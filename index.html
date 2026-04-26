@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MI.7 — الاستخبارات الرئاسية</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Cairo:wght@300;400;600;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--black:#020408;--dark:#060d14;--panel:#080f18;--panel2:#0b1825;--border:#0d2236;--border2:#1a3a55;--accent:#00d4ff;--accent2:#ff3030;--accent3:#ffc300;--green:#00ff7f;--text:#8ab8d0;--dim:#2e5268;--glow:0 0 18px rgba(0,212,255,0.35);--glow2:0 0 18px rgba(255,48,48,0.4);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--black);color:var(--text);font-family:'Cairo',sans-serif;overflow-x:hidden;min-height:100vh;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.06) 2px,rgba(0,0,0,0.06) 4px);pointer-events:none;z-index:9998;}
+body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;}
+
+
+.topbar{position:fixed;top:0;left:0;right:0;height:52px;background:rgba(4,10,18,0.98);border-bottom:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:1000;backdrop-filter:blur(12px);}
+.tbl{display:flex;align-items:center;gap:13px;}
+.tbl-logo{height:36px;width:36px;object-fit:contain;filter:drop-shadow(0 0 8px var(--accent));}
+.tbl-name{display:flex;flex-direction:column;line-height:1.1;}
+.tbl-name span:first-child{font-family:'Share Tech Mono',monospace;font-size:16px;color:var(--accent);letter-spacing:4px;text-shadow:var(--glow);}
+.tbl-name span:last-child{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:3px;}
+.tbr{display:flex;align-items:center;gap:14px;}
+.spl{display:flex;align-items:center;gap:7px;background:rgba(0,255,127,.07);border:1px solid rgba(0,255,127,.2);padding:3px 10px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--green);}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.clk{font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--accent);text-shadow:var(--glow);}
+.tb-badge{background:rgba(255,48,48,.12);border:1px solid rgba(255,48,48,.35);color:var(--accent2);padding:3px 10px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;}
+
+
+.hero{margin-top:52px;position:relative;z-index:1;overflow:hidden;background:linear-gradient(180deg,rgba(0,212,255,.05) 0%,transparent 70%);border-bottom:1px solid var(--border2);}
+.hero-inner{display:flex;align-items:center;justify-content:center;flex-direction:column;padding:30px 24px 22px;gap:8px;text-align:center;}
+.respect-en{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:12px;color:var(--accent3);text-shadow:0 0 16px rgba(255,195,0,.4);}
+.hero-logo-wrap{position:relative;width:100px;height:100px;margin:4px 0;}
+.hero-logo-img{width:100px;height:100px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 0 16px var(--accent));}
+.ring-outer{position:absolute;inset:-8px;border-radius:50%;border:1.5px solid rgba(0,212,255,.5);animation:spin 18s linear infinite;pointer-events:none;}
+.ring-dot{position:absolute;width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:var(--glow);top:-3px;left:50%;transform:translateX(-50%);}
+.ring-inner{position:absolute;inset:4px;border-radius:50%;border:1px dashed rgba(0,212,255,.3);animation:spin 9s linear infinite reverse;pointer-events:none;}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.logo-fallback{width:100px;height:100px;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:22px;color:var(--accent);text-shadow:var(--glow);background:rgba(0,212,255,.06);border:2px solid rgba(0,212,255,.3);border-radius:50%;}
+.org-ar{font-size:38px;font-weight:900;color:#fff;letter-spacing:4px;text-shadow:0 0 40px rgba(0,212,255,.4);}
+.org-en{font-family:'Share Tech Mono',monospace;font-size:11.5px;letter-spacing:4px;color:var(--accent);text-shadow:var(--glow);}
+.respect-ar{font-size:13px;color:var(--accent3);letter-spacing:3px;margin-top:2px;font-weight:600;}
+.cl-tag{margin-top:6px;background:rgba(255,48,48,.1);border:1px solid rgba(255,48,48,.35);color:var(--accent2);font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;padding:4px 18px;display:inline-block;}
+.hero-div{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin-top:14px;opacity:.35;}
+
+
+.main{position:relative;z-index:1;padding:18px 22px;max-width:1700px;margin:0 auto;}
+
+
+.srow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px;}
+.sc{background:var(--panel);border:1px solid var(--border);padding:13px 10px;text-align:center;position:relative;overflow:hidden;transition:.3s;cursor:default;}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);box-shadow:var(--glow);}
+.sc:hover{border-color:var(--accent);box-shadow:var(--glow);transform:translateY(-2px);}
+.sn{font-family:'Share Tech Mono',monospace;font-size:30px;font-weight:bold;color:var(--accent);text-shadow:var(--glow);}
+.sl{font-size:10px;color:var(--dim);margin-top:3px;letter-spacing:1px;}
+
+
+.tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--border2);overflow-x:auto;}
+.tab-btn{padding:10px 17px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--dim);font-family:'Cairo',sans-serif;font-size:12.5px;cursor:pointer;white-space:nowrap;transition:.2s;display:flex;align-items:center;gap:7px;margin-bottom:-1px;}
+.tab-btn:hover{color:var(--text);background:rgba(0,212,255,.04);}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);background:rgba(0,212,255,.06);text-shadow:var(--glow);}
+.tc{display:none;animation:fi .25s ease;}
+.tc.active{display:block;}
+@keyframes fi{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.st{font-size:15px;font-weight:700;color:#fff;display:flex;align-items:center;gap:9px;}
+.st::before{content:'';width:3px;height:18px;background:var(--accent);box-shadow:var(--glow);}
+
+
+.btn{padding:7px 15px;background:rgba(0,212,255,.09);border:1px solid var(--accent);color:var(--accent);font-family:'Cairo',sans-serif;font-size:12px;cursor:pointer;transition:.2s;}
+.btn:hover{background:rgba(0,212,255,.2);box-shadow:var(--glow);}
+.btn-r{background:rgba(255,48,48,.09);border-color:var(--accent2);color:var(--accent2);}
+.btn-r:hover{background:rgba(255,48,48,.2);box-shadow:var(--glow2);}
+.bsm{padding:3px 9px;font-size:11px;}
+
+
+.sr{display:flex;gap:8px;margin-bottom:13px;}
+.inp{background:var(--panel2);border:1px solid var(--border);color:var(--text);padding:8px 12px;font-family:'Cairo',sans-serif;font-size:12px;outline:none;transition:.2s;flex:1;}
+.inp:focus{border-color:var(--accent);box-shadow:var(--glow);}
+.inp::placeholder{color:var(--dim);}
+select.inp{cursor:pointer;flex:0 0 155px;}
+
+
+.tw{background:var(--panel);border:1px solid var(--border);overflow:hidden;}
+.dt{width:100%;border-collapse:collapse;font-size:12.5px;}
+.dt th{background:rgba(0,212,255,.06);color:var(--accent);font-weight:600;padding:9px 12px;text-align:right;font-size:10px;letter-spacing:1.5px;border-bottom:1px solid var(--border2);white-space:nowrap;}
+.dt td{padding:9px 12px;border-bottom:1px solid rgba(13,34,54,.5);color:var(--text);vertical-align:middle;}
+.dt tr:hover td{background:rgba(0,212,255,.03);}
+.dt tr:last-child td{border-bottom:none;}
+.mono{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent);}
+.wn{font-weight:700;color:#fff;}
+
+
+.b{display:inline-block;padding:2px 9px;font-size:10px;letter-spacing:.5px;font-family:'Share Tech Mono',monospace;font-weight:bold;border-radius:1px;}
+.br{background:rgba(255,48,48,.12);color:var(--accent2);border:1px solid rgba(255,48,48,.3);}
+.by{background:rgba(255,195,0,.1);color:var(--accent3);border:1px solid rgba(255,195,0,.3);}
+.bg{background:rgba(0,255,127,.1);color:var(--green);border:1px solid rgba(0,255,127,.3);}
+.bb{background:rgba(0,212,255,.1);color:var(--accent);border:1px solid rgba(0,212,255,.3);}
+.bz{background:rgba(80,110,130,.12);color:#6a8a9a;border:1px solid rgba(80,110,130,.25);}
+
+
+.av{width:36px;height:36px;border-radius:2px;border:1px solid var(--border2);background:var(--panel2);display:flex;align-items:center;justify-content:center;font-size:17px;}
+
+
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:13px;}
+.ic{background:var(--panel);border:1px solid var(--border);overflow:hidden;transition:.3s;position:relative;}
+.ic::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:.3s;}
+.ic:hover{border-color:rgba(0,212,255,.3);box-shadow:0 0 16px rgba(0,212,255,.07);transform:translateY(-2px);}
+.ic:hover::after{opacity:1;}
+.ct{width:100%;height:125px;background:linear-gradient(135deg,#08121d,#0d2236);display:flex;align-items:center;justify-content:center;font-size:34px;border-bottom:1px solid var(--border);}
+.cb{padding:12px;}
+.ctitle{font-size:13.5px;font-weight:700;color:#fff;margin-bottom:7px;}
+.cm{font-size:11px;color:var(--dim);display:flex;flex-direction:column;gap:3px;margin-bottom:8px;}
+.cf{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:8px;margin-top:8px;}
+
+
+.notif{background:rgba(255,48,48,.07);border:1px solid rgba(255,48,48,.2);padding:8px 13px;display:flex;align-items:center;gap:10px;margin-bottom:13px;font-size:12px;color:var(--accent2);}
+.ni{animation:blink 1.5s infinite;font-size:15px;}
+
+
+.mc{background:var(--panel);border:1px solid var(--border2);overflow:hidden;margin-bottom:15px;}
+.mh{background:rgba(0,212,255,.05);border-bottom:1px solid var(--border);padding:9px 15px;display:flex;align-items:center;justify-content:space-between;}
+.mhttl{font-family:'Share Tech Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:2px;}
+.mhst{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--green);display:flex;align-items:center;gap:6px;}
+.mw{position:relative;width:100%;height:480px;overflow:hidden;cursor:crosshair;}
+.mi{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.85) brightness(.72);}
+.mw::before{content:none;}
+.mw::after{content:none;}
+.mp{position:absolute;inset:0;z-index:3;}
+.pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;}
+.pd{width:12px;height:12px;border-radius:50%;border:2px solid;position:relative;animation:pp 2.5s infinite;}
+.pd::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid;opacity:0;animation:rp 2.5s infinite;}
+@keyframes pp{0%,100%{transform:scale(1);}50%{transform:scale(1.2);}}
+@keyframes rp{0%{inset:-3px;opacity:.6;}100%{inset:-14px;opacity:0;}}
+.pl{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);white-space:nowrap;background:rgba(4,10,18,.92);border:1px solid;padding:2px 7px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;}
+.p-red .pd{background:var(--accent2);border-color:var(--accent2);box-shadow:0 0 10px var(--accent2);}
+.p-red .pd::after{border-color:var(--accent2);}
+.p-red .pl{color:var(--accent2);border-color:rgba(255,48,48,.4);}
+.p-yellow .pd{background:var(--accent3);border-color:var(--accent3);box-shadow:0 0 10px var(--accent3);}
+.p-yellow .pd::after{border-color:var(--accent3);}
+.p-yellow .pl{color:var(--accent3);border-color:rgba(255,195,0,.4);}
+.p-green .pd{background:var(--green);border-color:var(--green);box-shadow:0 0 10px var(--green);}
+.p-green .pd::after{border-color:var(--green);}
+.p-green .pl{color:var(--green);border-color:rgba(0,255,127,.4);}
+.p-blue .pd{background:var(--accent);border-color:var(--accent);box-shadow:0 0 10px var(--accent);}
+.p-blue .pd::after{border-color:var(--accent);}
+.p-blue .pl{color:var(--accent);border-color:rgba(0,212,255,.4);}
+.mc-corner{position:absolute;width:18px;height:18px;border-color:var(--accent);border-style:solid;z-index:4;opacity:.55;}
+.mc-corner.tl{top:10px;right:10px;border-width:2px 0 0 2px;}
+.mc-corner.tr{top:10px;left:10px;border-width:2px 2px 0 0;}
+.mc-corner.bl{bottom:10px;right:10px;border-width:0 0 2px 2px;}
+.mc-corner.br{bottom:10px;left:10px;border-width:0 2px 2px 0;}
+.mc-coords{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:'Share Tech Mono',monospace;font-size:9.5px;color:rgba(0,212,255,.45);z-index:4;letter-spacing:2px;}
+.mh{background:rgba(0,212,255,.05);border-bottom:1px solid var(--border);padding:9px 15px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+.mh-right{display:flex;align-items:center;gap:8px;}
+.mmode{display:flex;gap:4px;}
+.mmb{padding:3px 9px;border:1px solid var(--border2);background:transparent;color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:9px;cursor:pointer;transition:.15s;letter-spacing:1px;}
+.mmb.on{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.08);}
+.map-zoom-ctrl{position:absolute;top:8px;left:8px;z-index:5;display:flex;flex-direction:column;gap:3px;}
+.mzb{width:26px;height:26px;background:rgba(2,12,21,.9);border:1px solid var(--border2);color:var(--accent);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.2s;line-height:1;}
+.mzb:hover{border-color:var(--accent);}
+.map-hint{position:absolute;top:8px;right:8px;background:rgba(255,48,48,.1);border:1px solid rgba(255,48,48,.4);color:var(--accent2);font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 9px;z-index:5;pointer-events:none;display:none;letter-spacing:1px;}
+.fbt{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:rgba(2,8,16,.96);border:1px solid var(--border2);color:var(--dim);font-family:'Share Tech Mono',monospace;font-size:10px;padding:5px 16px;z-index:9999;letter-spacing:1px;opacity:0;transition:opacity .3s;pointer-events:none;}
+.fbt.show{opacity:1;}
+.fbt.ok{border-color:rgba(0,255,127,.4);color:var(--green);}
+.fbt.err{border-color:rgba(255,48,48,.4);color:var(--accent2);}
+.ml{display:flex;gap:14px;padding:9px 15px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.li{display:flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);}
+.ld{width:7px;height:7px;border-radius:50%;}
+.lg{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;}
+.lc{background:var(--panel2);border:1px solid var(--border);padding:12px;transition:.2s;cursor:pointer;}
+.lc:hover{border-color:var(--accent);box-shadow:var(--glow);}
+.lcc{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:5px;}
+.lcn{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;}
+.lcd{font-size:11px;color:var(--dim);line-height:1.5;}
+
+
+.wg{display:grid;grid-template-columns:repeat(auto-fill,minmax(225px,1fr));gap:13px;}
+.wc{background:var(--panel);border:1px solid rgba(255,48,48,.2);overflow:hidden;transition:.3s;}
+.wc:hover{border-color:var(--accent2);box-shadow:var(--glow2);transform:translateY(-2px);}
+.wct{background:rgba(255,48,48,.07);padding:8px 12px;border-bottom:1px solid rgba(255,48,48,.15);display:flex;justify-content:space-between;}
+.wcl{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent2);letter-spacing:2px;}
+.wcr{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent3);}
+.wcp{width:68px;height:68px;border-radius:2px;border:2px solid rgba(255,48,48,.3);display:flex;align-items:center;justify-content:center;font-size:26px;background:rgba(255,48,48,.04);margin:12px auto;}
+.wcn{text-align:center;font-size:13.5px;font-weight:700;color:#fff;padding:0 12px;margin-bottom:3px;}
+.wca{text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);padding:0 12px;margin-bottom:8px;}
+.wcd{padding:9px 12px 12px;border-top:1px solid var(--border);font-size:11px;color:var(--dim);line-height:1.75;}
+
+
+.tc2{display:grid;grid-template-columns:2fr 1fr;gap:16px;}
+.rg{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:11px;}
+.rk{background:var(--panel);border:1px solid var(--border);padding:15px;text-align:center;transition:.3s;overflow:hidden;}
+.rk:hover{border-color:var(--accent);box-shadow:var(--glow);transform:translateY(-3px);}
+.ri{font-size:32px;margin-bottom:7px;display:block;}
+.rn{font-size:14.5px;font-weight:700;color:#fff;margin-bottom:2px;}
+.re{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;margin-bottom:9px;}
+.rc{font-family:'Share Tech Mono',monospace;font-size:22px;color:var(--accent);text-shadow:var(--glow);}
+.rb{width:100%;height:2px;background:var(--border);margin-top:9px;overflow:hidden;}
+.rf{height:100%;background:var(--accent);box-shadow:var(--glow);}
+.sp{background:var(--panel);border:1px solid var(--border);padding:13px;}
+.ai{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(13,34,54,.5);align-items:flex-start;}
+.ai:last-child{border-bottom:none;}
+.ad{width:7px;height:7px;border-radius:50%;margin-top:4px;flex-shrink:0;}
+.at{font-size:11.5px;line-height:1.5;color:var(--text);}
+.atm{font-family:'Share Tech Mono',monospace;font-size:9.5px;color:var(--dim);margin-top:2px;}
+
+
+.mo{display:none;position:fixed;inset:0;background:rgba(2,4,8,.92);z-index:2000;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+.mo.open{display:flex;}
+.md{background:var(--dark);border:1px solid var(--accent);box-shadow:var(--glow),0 0 60px rgba(0,0,0,.9);width:570px;max-width:96vw;max-height:88vh;overflow-y:auto;}
+.mdhd{background:rgba(0,212,255,.06);padding:13px 17px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.mdt{font-size:13.5px;font-weight:700;color:var(--accent);letter-spacing:2px;}
+.mdx{background:none;border:1px solid var(--border);color:var(--dim);width:27px;height:27px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:.2s;}
+.mdx:hover{border-color:var(--accent2);color:var(--accent2);}
+.mdb{padding:17px;}
+.mdf{padding:11px 17px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end;}
+.fg{margin-bottom:11px;}
+.fl{display:block;font-size:10px;color:var(--dim);letter-spacing:2px;margin-bottom:5px;}
+.fi{width:100%;background:var(--panel);border:1px solid var(--border);color:var(--text);padding:8px 11px;font-family:'Cairo',sans-serif;font-size:12.5px;outline:none;transition:.2s;}
+.fi:focus{border-color:var(--accent);box-shadow:var(--glow);}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+
+
+.pg{display:flex;justify-content:space-between;align-items:center;margin-top:9px;font-size:11px;color:var(--dim);}
+
+
+.es{padding:48px 20px;text-align:center;color:var(--dim);}
+.ei{font-size:38px;margin-bottom:9px;opacity:.35;}
+.et{font-family:'Share Tech Mono',monospace;font-size:12px;letter-spacing:2px;}
+
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-track{background:var(--dark);}
+::-webkit-scrollbar-thumb{background:var(--border2);}
+::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+
+@media(max-width:900px){.srow{grid-template-columns:repeat(3,1fr);}.lg{grid-template-columns:1fr 1fr;}.tc2{grid-template-columns:1fr;}.fg2{grid-template-columns:1fr;}}
+@media(max-width:580px){.srow{grid-template-columns:repeat(2,1fr);}.lg{grid-template-columns:1fr;}.tbr .spl{display:none;}}
+
+/* RANK DETAIL PAGE */
+.rank-page{display:none;position:fixed;inset:0;background:rgba(2,4,8,.97);z-index:3000;overflow-y:auto;padding:22px;}
+.rank-page.open{display:block;}
+.rph{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:12px;border-bottom:1px solid var(--border2);}
+.rpback{padding:6px 14px;background:rgba(0,212,255,.09);border:1px solid var(--accent);color:var(--accent);font-family:'Cairo',sans-serif;font-size:12px;cursor:pointer;transition:.2s;}
+.rpback:hover{background:rgba(0,212,255,.2);box-shadow:var(--glow);}
+.rp-title{font-size:20px;font-weight:900;color:#fff;}
+.rp-sub{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--dim);letter-spacing:2px;}
+.rpg{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;}
+.rpc{background:var(--panel);border:1px solid var(--border);padding:14px;text-align:center;transition:.3s;}
+.rpc:hover{border-color:var(--accent);box-shadow:var(--glow);transform:translateY(-2px);}
+.rpc-img{width:72px;height:72px;border-radius:50%;border:2px solid var(--border2);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:26px;background:var(--panel2);}
+.rpc-img img{width:100%;height:100%;object-fit:cover;}
+.rpc-name{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;}
+.rpc-dept{font-size:10px;color:var(--dim);margin-bottom:6px;}
+/* LOCATION POPUP */
+.loc-popup{display:none;position:fixed;inset:0;background:rgba(2,4,8,.88);z-index:2500;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.loc-popup.open{display:flex;}
+.lpi{background:var(--dark);border:1px solid var(--accent);box-shadow:var(--glow),0 0 50px rgba(0,0,0,.9);width:440px;max-width:95vw;max-height:88vh;overflow-y:auto;}
+.lp-img{width:100%;height:190px;object-fit:cover;display:block;border-bottom:1px solid var(--border);}
+.lp-ie{width:100%;height:110px;background:linear-gradient(135deg,#08121d,#0d2236);display:flex;align-items:center;justify-content:center;font-size:40px;border-bottom:1px solid var(--border);}
+.lp-body{padding:16px;}
+.lp-coords{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:6px;}
+.lp-name{font-size:17px;font-weight:900;color:#fff;margin-bottom:8px;}
+.lp-desc{font-size:12px;color:var(--dim);line-height:1.6;margin-bottom:12px;}
+/* IMG PREVIEW IN MODAL */
+.img-prev{width:100%;height:110px;border:1px dashed var(--border2);display:flex;align-items:center;justify-content:center;margin-top:6px;overflow:hidden;background:var(--panel2);cursor:pointer;position:relative;}
+.img-prev img{max-width:100%;max-height:100%;object-fit:contain;}
+.img-prev-lbl{position:absolute;font-size:11px;color:var(--dim);font-family:'Share Tech Mono',monospace;}
+.img-prev:has(img) .img-prev-lbl{display:none;}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:95vw;max-height:92vh;object-fit:contain;box-shadow:0 0 60px rgba(0,212,255,.2);}
+.lb-close{position:absolute;top:16px;left:16px;background:rgba(0,0,0,.7);border:1px solid var(--border2);color:#fff;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;}
+/* صورة في المطلوبين */
+.wcp-img{width:80px;height:80px;border-radius:4px;border:2px solid rgba(255,48,48,.4);margin:12px auto;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:28px;background:rgba(255,48,48,.05);cursor:pointer;}
+.wcp-img img{width:100%;height:100%;object-fit:cover;}
+/* صورة في الأسماء */
+.av{width:40px;height:40px;border-radius:3px;border:1px solid var(--border2);background:var(--panel2);display:flex;align-items:center;justify-content:center;font-size:18px;overflow:hidden;cursor:pointer;}
+.av img{width:100%;height:100%;object-fit:cover;}
+
+/* MOBILE TABLE FIX */
+.dt-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+@media(max-width:600px){
+  .hide-mobile{display:none !important;}
+  .dt td,.dt th{padding:7px 8px;font-size:11px;}
+}
+</style>
+</head>
+<body>
+
+
+<div class="topbar">
+  <div class="tbl">
+    <img src="logo.png" class="tbl-logo" alt="logo" id="tb-logo" onerror="this.style.display='none'">
+    <div class="tbl-name">
+      <span>◈ M.I.7</span>
+      <span>PRESIDENTIAL INTELLIGENCE</span>
+    </div>
+  </div>
+  <div class="tbr">
+    <div class="spl"><div class="dot"></div>ONLINE</div>
+    <div class="clk" id="clk">--:--:--</div>
+    <div class="tb-badge">TOP SECRET</div>
+  </div>
+</div>
+
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="respect-en">R E S P E C T</div>
+    <div class="hero-logo-wrap">
+      <img src="logo.png" class="hero-logo-img" alt="MI.7 Logo" id="hero-logo"
+        onerror="this.outerHTML='<div class=\'logo-fallback\'>MI.7</div>'">
+      <div class="ring-outer"><div class="ring-dot"></div></div>
+      <div class="ring-inner"></div>
+    </div>
+    <div class="org-ar">الاستخبارات الرئاسية</div>
+    <div class="org-en">PRESIDENTIAL INTELLIGENCE — MI.7</div>
+    <div class="respect-ar">ريسبكت &nbsp;·&nbsp; RESPECT</div>
+    <div class="cl-tag">سري للغاية — CLASSIFIED ACCESS ONLY</div>
+    <div class="hero-div"></div>
+  </div>
+</div>
+
+
+<div class="main">
+
+  
+  <div class="srow">
+    <div class="sc"><div class="sn" id="s-total">0</div><div class="sl">إجمالي السجلات</div></div>
+    <div class="sc"><div class="sn" id="s-wanted" style="color:var(--accent2)">0</div><div class="sl">المطلوبون</div></div>
+    <div class="sc"><div class="sn" id="s-vehicles" style="color:var(--accent3)">0</div><div class="sl">مركبات مشتبهة</div></div>
+    <div class="sc"><div class="sn" id="s-locations" style="color:var(--green)">0</div><div class="sl">مواقع مراقبة</div></div>
+    <div class="sc"><div class="sn" id="s-personnel">0</div><div class="sl">أفراد مسجلون</div></div>
+  </div>
+
+  
+  <div class="tabs">
+    <button class="tab-btn active" onclick="sw('names',this)">👤 الأسماء</button>
+    <button class="tab-btn" onclick="sw('photos',this)">📷 المعلومات الحساسة</button>
+    <button class="tab-btn" onclick="sw('locations',this)">📍 المواقع</button>
+    <button class="tab-btn" onclick="sw('vehicles',this)">🚗 المركبات</button>
+    <button class="tab-btn" onclick="sw('wanted',this)">🎯 المطلوبون</button>
+    <button class="tab-btn" onclick="sw('ranks',this)">⭐ رتب الأفراد</button>
+  </div>
+
+  
+  <div class="tc active" id="tab-names">
+    <div class="sh"><div class="st">قاعدة بيانات الأسماء</div><button class="btn" onclick="om('mn')">+ إضافة سجل</button></div>
+    <div class="sr">
+      <input type="text" class="inp" placeholder="بحث." oninput="rn()">
+      <select class="inp" onchange="rn()">
+        <option value="">الكل</option>
+        <option>خطر عالي</option><option>مشتبه به</option><option>مراقبة</option><option>متعاون</option><option>مطلوب</option>
+      </select>
+    </div>
+    <div class="tw"><table class="dt"><thead><tr>
+      <th>رقم الملف</th><th>الصورة</th><th>الاسم الكامل</th><th>الاسم الحركي</th>
+      <th>تاريخ الميلاد</th><th>التصنيف</th><th>الحالة</th><th>إجراء</th>
+    </tr></thead><tbody id="nb"></tbody></table></div>
+    <div class="pg"><span class="mono" id="nc">0 سجل</span></div>
+  </div>
+
+  
+  <div class="tc" id="tab-photos">
+    <div class="sh"><div class="st">المعلومات الحساسة</div><button class="btn" onclick="om('mp')">+ رفع ملف</button></div>
+    <div class="sr">
+      <input type="text" class="inp" placeholder="🔍  بحث في الملفات..." oninput="rp()">
+      <select class="inp" onchange="rp()">
+        <option value="">جميع الأنواع</option>
+        <option>صور ميدانية</option><option>وثائق</option><option>تسجيلات</option><option>خرائط</option>
+      </select>
+    </div>
+    <div class="cg" id="pg2"></div>
+    <div class="pg" style="margin-top:9px"><span class="mono" id="pc">0 ملف</span></div>
+  </div>
+
+  
+  <div class="tc" id="tab-locations">
+    <div class="sh"><div class="st">المواقع الميدانية</div><button class="btn" onclick="om('ml')">+ إضافة موقع</button></div>
+    
+    <div class="mc">
+      <div class="mh">
+        <div class="mhttl">◈ LOS SANTOS TACTICAL MAP — CLASSIFIED</div>
+        <div class="mh-right">
+          <div class="mmode">
+            <button class="mmb on" id="mb-view" onclick="setMode('view')">VIEW</button>
+            <button class="mmb" id="mb-place" onclick="setMode('place')">📍 PLACE</button>
+            <button class="mmb" id="mb-pan" onclick="setMode('pan')">✋ PAN</button>
+          </div>
+          <div class="mhst"><div class="dot"></div>SATELLITE LINK ACTIVE</div>
+        </div>
+      </div>
+      <div class="mw" id="mw">
+        <img class="mi" id="mimg" src="Los.png" alt="Los Santos Map" style="width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.85) brightness(.72);">
+        <div class="map-zoom-ctrl">
+          <button class="mzb" onclick="mZoom(1.25)">+</button>
+          <button class="mzb" onclick="mZoom(0.8)">−</button>
+          <button class="mzb" onclick="mReset()" style="font-size:10px">⌂</button>
+        </div>
+        <div class="map-hint" id="mhint">⊕ انقر على الخريطة لوضع البين</div>
+        <div class="mc-corner tl"></div><div class="mc-corner tr"></div>
+        <div class="mc-corner bl"></div><div class="mc-corner br"></div>
+        <div class="mc-coords" id="mcoords">LOS SANTOS — HOVER TO SCAN</div>
+        <div class="mp" id="pins" style="position:absolute;inset:0;z-index:3;pointer-events:none;"></div>
+      </div>
+      <div class="ml">
+        <div class="li"><div class="ld" style="background:var(--accent2)"></div>خطر عالي</div>
+        <div class="li"><div class="ld" style="background:var(--accent3)"></div>تحت المراقبة</div>
+        <div class="li"><div class="ld" style="background:var(--green)"></div>آمن/مستقر</div>
+        <div class="li"><div class="ld" style="background:var(--accent)"></div>مركز عمليات</div>
+      </div>
+    </div>
+    <div class="lg" id="lg2"></div>
+    <div class="pg" style="margin-top:9px"><span class="mono" id="lc2">0 موقع</span></div>
+  </div>
+
+  
+  <div class="tc" id="tab-vehicles">
+    <div class="sh"><div class="st">المركبات المشتبهة</div><button class="btn" onclick="om('mv')">+ إضافة مركبة</button></div>
+    <div class="sr">
+      <input type="text" class="inp" placeholder="🔍  بحث برقم اللوحة أو الطراز..." oninput="rv()">
+      <select class="inp" onchange="rv()">
+        <option value="">جميع الحالات</option>
+        <option>مراقبة</option><option>مطلوب</option><option>محتجز</option><option>مجهول</option>
+      </select>
+    </div>
+    <div class="tw"><table class="dt"><thead><tr>
+      <th>رقم الملف</th><th>اللوحة</th><th>الطراز</th><th>اللون</th>
+      <th>سنة الاصدار</th><th>آخر رصد</th><th>مستوى التهديد</th><th>الحالة</th><th>إجراء</th>
+    </tr></thead><tbody id="vb"></tbody></table></div>
+    <div class="pg"><span class="mono" id="vc2">0 مركبة</span></div>
+  </div>
+
+  
+  <div class="tc" id="tab-wanted">
+    <div class="notif"><span class="ni">⚠</span><span>تحذير:كل معلومة تسجل عن المطلوبين مهمة لاتتهاون</span></div>
+    <div class="sh"><div class="st">قائمة المطلوبين</div><button class="btn btn-r" onclick="om('mw2')">+ إضافة مطلوب</button></div>
+    <div class="wg" id="wg2"></div>
+    <div class="pg" style="margin-top:9px"><span class="mono" id="wc2">0 مطلوب</span></div>
+  </div>
+
+  
+  <div class="tc" id="tab-ranks">
+    <div class="tc2">
+      <div>
+        <div class="sh"><div class="st">رتب الأفراد</div><button class="btn" onclick="om('mr')">+ إضافة فرد</button></div>
+        <div class="rg" id="rg2"></div>
+      </div>
+      <div>
+        <div class="sh"><div class="st">سجل النشاط</div></div>
+        <div class="sp" id="alog"><div class="es"><div class="ei">📋</div><div class="et">لا يوجد نشاط</div></div></div>
+        <div style="margin-top:13px" class="sp">
+          <div class="st" style="font-size:13px;margin-bottom:11px">إحصائيات سريعة</div>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:12px;">
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--dim)">العمليات الجارية</span><span class="mono" id="qs1">0</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--dim)">فرق المراقبة</span><span class="mono" id="qs2">0</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--dim)">الحوادث</span><span class="mono" id="qs3">0</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--dim)">الملفات المعلقة</span><span class="mono" id="qs4">0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div class="mo" id="mn"><div class="md">
+  <div class="mdhd"><div class="mdt">إضافة سجل — الأسماء</div><button class="mdx" onclick="cm('mn')">✕</button></div>
+  <div class="mdb">
+    <div class="fg2">
+      <div class="fg"><label class="fl">الاسم الكامل</label><input class="fi" id="nfn" placeholder="الاسم الكامل"></div>
+      <div class="fg"><label class="fl">الكودنيم</label><input class="fi" id="ncd" placeholder="MOVEMENT NAME"></div>
+      <div class="fg"><label class="fl">تاريخ الميلاد</label><input class="fi" id="ndb" type="date"></div>
+      <div class="fg"><label class="fl">التصنيف</label><select class="fi" id="ncl"><option>خطر عالي</option><option>مشتبه به</option><option>مراقبة</option><option>متعاون</option><option>مطلوب</option></select></div>
+      <div class="fg"><label class="fl">الحالة</label><select class="fi" id="nst"><option>نشط</option><option>مراقبة</option><option>تحت التتبع</option><option>مجهول</option><option>محتجز</option></select></div>
+    </div>
+    <div class="fg"><label class="fl">ملاحظات</label><textarea class="fi" id="nnt" rows="3" placeholder="معلومات إضافية..."></textarea></div>
+    <div class="fg"><label class="fl">صورة الشخص</label><input type="file" accept="image/*" class="fi" id="n-img" onchange="prevImg(this,'n-prev')"><div class="img-prev" id="n-prev" onclick="document.getElementById('n-img').click()"><span class="img-prev-lbl">📎 اضغط لرفع صورة</span></div></div>
+  </div>
+  <div class="mdf"><button class="btn" style="color:var(--dim);border-color:var(--border)" onclick="cm('mn')">إلغاء</button><button class="btn" onclick="save('names')">حفظ</button></div>
+</div></div>
+
+
+<div class="mo" id="mp"><div class="md">
+  <div class="mdhd"><div class="mdt">رفع ملف حساس</div><button class="mdx" onclick="cm('mp')">✕</button></div>
+  <div class="mdb">
+    <div class="fg"><label class="fl">اسم الملف</label><input class="fi" id="pnm" placeholder="اسم الملف / العملية"></div>
+    <div class="fg2">
+      <div class="fg"><label class="fl">نوع الملف</label><select class="fi" id="pty"><option>صور ميدانية</option><option>وثائق</option><option>تسجيلات</option><option>خرائط</option></select></div>
+      <div class="fg"><label class="fl">درجة السرية</label><select class="fi" id="psc"><option>سري للغاية</option><option>سري</option><option>محدود</option></select></div>
+    </div>
+    <div class="fg"><label class="fl">وصف</label><textarea class="fi" id="pds" rows="3" placeholder="وصف مختصر..."></textarea></div>
+    <div class="fg"><label class="fl">صورة الملف</label><input type="file" accept="image/*" class="fi" id="p-img" onchange="prevImg(this,'p-prev')"><div class="img-prev" id="p-prev" onclick="document.getElementById('p-img').click()"><span class="img-prev-lbl">📎 اضغط لرفع صورة</span></div></div>
+  </div>
+  <div class="mdf"><button class="btn" style="color:var(--dim);border-color:var(--border)" onclick="cm('mp')">إلغاء</button><button class="btn" onclick="save('photos')">رفع</button></div>
+</div></div>
+
+
+<div class="mo" id="ml"><div class="md">
+  <div class="mdhd"><div class="mdt">إضافة موقع ميداني</div><button class="mdx" onclick="cm('ml')">✕</button></div>
+  <div class="mdb">
+    <div class="fg2">
+      <div class="fg"><label class="fl">اسم النقطة</label><input class="fi" id="lnm" placeholder="اسم الموقع"></div>
+      <div class="fg"><label class="fl">رمز النقطة</label><input class="fi" id="lcd" placeholder="NORTH / SOUTH..."></div>
+      <div class="fg"><label class="fl">موقع X على الخريطة (0-100%)</label><input class="fi" id="lx" type="number" min="0" max="100" placeholder="50"></div>
+      <div class="fg"><label class="fl">موقع Y على الخريطة (0-100%)</label><input class="fi" id="ly" type="number" min="0" max="100" placeholder="50"></div>
+      <div class="fg"><label class="fl">مستوى التهديد</label><select class="fi" id="lth"><option>خطر عالي</option><option>تحت المراقبة</option><option>نشط</option><option>مستقر</option><option>آمن</option></select></div>
+      <div class="fg"><label class="fl">نوع الموقع</label><select class="fi" id="ltp"><option>نقطة مراقبة</option><option>مستودع</option><option>نقطة التقاء</option><option>مسار تهريب</option><option>مركز قيادة</option></select></div>
+    </div>
+    <div class="fg"><label class="fl">وصف</label><textarea class="fi" id="lds" rows="3" placeholder="معلومات إضافية..."></textarea></div>
+    <div class="fg"><label class="fl">صورة الموقع</label><input type="file" accept="image/*" class="fi" id="l-img" onchange="prevImg(this,'l-prev')"><div class="img-prev" id="l-prev" onclick="document.getElementById('l-img').click()"><span class="img-prev-lbl">📎 اضغط لرفع صورة</span></div></div>
+  </div>
+  <div class="mdf"><button class="btn" style="color:var(--dim);border-color:var(--border)" onclick="cm('ml')">إلغاء</button><button class="btn" onclick="save('locations')">حفظ</button></div>
+</div></div>
+
+
+<div class="mo" id="mv"><div class="md">
+  <div class="mdhd"><div class="mdt">إضافة مركبة مشتبهة</div><button class="mdx" onclick="cm('mv')">✕</button></div>
+  <div class="mdb">
+    <div class="fg2">
+      <div class="fg"><label class="fl">رقم اللوحة</label><input class="fi" id="vpl" placeholder="XX-0000"></div>
+      <div class="fg"><label class="fl">طراز المركبة</label><input class="fi" id="vmo" placeholder="الطراز"></div>
+      <div class="fg"><label class="fl">اللون</label><input class="fi" id="vcl" placeholder="اللون"></div>
+      <div class="fg"><label class="fl">سنة الصنع</label><input class="fi" id="vyr" type="number" placeholder="2024"></div>
+      <div class="fg"><label class="fl">الشخص المرتبط</label><input class="fi" id="vlk" placeholder="الكودنيم"></div>
+      <div class="fg"><label class="fl">آخر رصد</label><input class="fi" id="vls" placeholder="الموقع"></div>
+      <div class="fg"><label class="fl">مستوى التهديد</label><select class="fi" id="vth"><option>عالي جداً</option><option>عالي</option><option>متوسط</option><option>منخفض</option></select></div>
+      <div class="fg"><label class="fl">الحالة</label><select class="fi" id="vst"><option>مراقبة</option><option>مطلوب</option><option>محتجز</option><option>مجهول</option></select></div>
+    </div>
+  <div class="fg" style="margin-top:4px"><label class="fl">صورة المركبة</label><input type="file" accept="image/*" class="fi" id="v-img" onchange="prevImg(this,'v-prev')"><div class="img-prev" id="v-prev" onclick="document.getElementById('v-img').click()"><span class="img-prev-lbl">📎 اضغط لرفع صورة</span></div></div>
+  </div>
+  <div class="mdf"><button class="btn" style="color:var(--dim);border-color:var(--border)" onclick="cm('mv')">إلغاء</button><button class="btn" onclick="save('vehicles')">حفظ</button></div>
+</div></div>
+
+
+<div class="mo" id="mw2"><div class="md">
+  <div class="mdhd"><div class="mdt" style="color:var(--accent2)">إضافة مطلوب</div><button class="mdx" onclick="cm('mw2')">✕</button></div>
+  <div class="mdb">
+    <div class="fg2">
+      <div class="fg"><label class="fl">الاسم الكامل</label><input class="fi" id="wfn" placeholder="الاسم"></div>
+      <div class="fg"><label class="fl">الاسم الحركي</label><input class="fi" id="wcd" placeholder="movment name"></div>
+      <div class="fg"><label class="fl">الجريمة</label><input class="fi" id="wcr" placeholder="نوع الجريمة"></div>
+      <div class="fg"><label class="fl">مستوى الخطورة</label><select class="fi" id="wlv"><option>خطر شديد</option><option>خطر عالي</option><option>مراقبة مستمرة</option></select></div>
+      <div class="fg"><label class="fl">آخر موقع</label><input class="fi" id="wlc" placeholder="الموقع"></div>
+      <div class="fg"><label class="fl">تاريخ الإدراج</label><input class="fi" id="wdt" type="date"></div>
+    </div>
+    <div class="fg"><label class="fl">ملاحظات</label><textarea class="fi" id="wnt" rows="3" placeholder="معلومات إضافية..."></textarea></div>
+    <div class="fg"><label class="fl">صورة المطلوب</label><input type="file" accept="image/*" class="fi" id="w-img" onchange="prevImg(this,'w-prev')"><div class="img-prev" id="w-prev" onclick="document.getElementById('w-img').click()"><span class="img-prev-lbl">📎 اضغط لرفع صورة</span></div></div>
+  </div>
+  <div class="mdf"><button class="btn" style="color:var(--dim);border-color:var(--border)" onclick="cm('mw2')">إلغاء</button><button class="btn btn-r" onclick="save('wanted')">إضافة</button></div>
+</div></div>
+
+
+<div class="mo" id="mr"><div class="md">
+  <div class="mdhd"><div class="mdt">تسجيل فرد جديد</div><button class="mdx" onclick="cm('mr')">✕</button></div>
+  <div class="mdb">
+    <div class="fg2">
+      <div class="fg"><label class="fl">الاسم الكامل</label><input class="fi" id="rfn" placeholder="الاسم"></div>
+      <div class="fg">
+        <label class="fl">الرتبة</label>
+        <select class="fi" id="rrk">
+          <option value="قائد الاستخبارات الرئاسية">قائد الاستخبارات الرئاسية</option>
+          <option value="عميد">عميد</option>
+          <option value="عقيد">عقيد</option>
+          <option value="مقدم">مقدم</option>
+          <option value="رائد">رائد</option>
+          <option value="نقيب">نقيب</option>
+          <option value="ملازم أول">ملازم أول</option>
+          <option value="ملازم">ملازم</option>
+          <option value="رئيس رقباء">رئيس رقباء</option>
+          <option value="رقيب اول">رقيب اول</option>
+          <option value="رقيب">رقيب</option>
+          <option value="وكيل رقيب">وكيل رقيب</option>
+          <option value="عريف">عريف</option>
+          <option value="جندي اول">جندي اول</option>
+          <option value="جندي">جندي</option>
+          <option value="مستجد">مستجد</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label class="fl">القسم</label>
+        <select class="fi" id="rdp">
+          <option value="التحقيقات">التحقيقات</option>
+          <option value="المراقبة الميدانية">المراقبة الميدانية</option>
+          <option value="الامن السيبراني">الامن السيبراني</option>
+          <option value="مسؤول الافراد">مسؤول الافراد</option>
+          <option value="الادارة">الادارة</option>
+          <option value="العمليات الميدانية">العمليات الميدانية</option>
+        </select>
+      </div>
+      <div class="fg"><label class="fl">تاريخ الانضمام</label><input class="fi" id="rdt" type="date"></div>
+      <div class="fg">
+        <label class="fl">الحالة</label>
+        <select class="fi" id="rst">
+          <option value="نشط">نشط</option>
+          <option value="في مهمة">في مهمة</option>
+          <option value="إجازة">إجازة</option>
+          <option value="متقاعد">متقاعد</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="mdf">
+    <button class="btn" style="color:var(--dim);border-color:var(--border)" onclick="cm('mr')">إلغاء</button>
+    <button class="btn" onclick="save('ranks')">تسجيل</button>
+  </div>
+</div></div>
+
+
+<!-- RANK DETAIL PAGE -->
+<div id="rank-page" class="rank-page">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="rph">
+      <button class="rpback" onclick="closeRankPage()">← رجوع</button>
+      <div>
+        <div class="rp-title" id="rp-rank-name">—</div>
+        <div class="rp-sub" id="rp-rank-en">—</div>
+      </div>
+      <div style="margin-right:auto;font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim)" id="rp-count">0 فرد</div>
+    </div>
+    <div class="rpg" id="rpg"></div>
+  </div>
+</div>
+
+<!-- LOCATION POPUP -->
+<div id="loc-popup" class="loc-popup" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="lpi">
+    <div id="lp-img-wrap"></div>
+    <div style="background:rgba(0,212,255,.05);padding:8px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+      <span style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:2px;">◈ LOCATION DETAILS</span>
+      <button class="mdx" onclick="document.getElementById('loc-popup').classList.remove('open')">✕</button>
+    </div>
+    <div class="lp-body">
+      <div class="lp-coords" id="lp-coords">—</div>
+      <div class="lp-name" id="lp-name">—</div>
+      <div style="margin-bottom:8px" id="lp-badges"></div>
+      <div class="lp-desc" id="lp-desc">—</div>
+    </div>
+  </div>
+</div>
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox" onclick="closeLB()">
+  <div class="lb-close" onclick="closeLB()">✕</div>
+  <img id="lb-img" src="" alt="">
+</div>
+<div id="fbt" class="fbt"></div>
+
+<script type="module">
+import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import{getFirestore,collection,addDoc,deleteDoc,doc,onSnapshot,serverTimestamp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const app=initializeApp({apiKey:"AIzaSyAuwH-WjKylhdcShelZNFgQU41TwFX5TUI",authDomain:"mi-7-e668a.firebaseapp.com",projectId:"mi-7-e668a",storageBucket:"mi-7-e668a.firebasestorage.app",messagingSenderId:"1041043504143",appId:"1:1041043504143:web:26705fd11fd1e0bef8777a"});
+const db=getFirestore(app);
+const state={names:[],photos:[],locations:[],vehicles:[],wanted:[],ranks:[]};
+const COLS=['names','photos','locations','vehicles','wanted','ranks'];
+
+function toast(msg,type=''){
+  const el=document.getElementById('fbt');
+  el.textContent=msg;el.className='fbt show '+(type||'');
+  clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('show'),3000);
+}
+function checkFirebase(){
+  setTimeout(()=>{
+    const allEmpty=COLS.every(c=>state[c].length===0);
+    if(allEmpty){
+      const hasSaved=localStorage.getItem('mi7_had_data');
+      if(hasSaved){toast('تحقق من Firestore Rules — قد تكون انتهت مدة test mode','err');}
+    } else {
+      localStorage.setItem('mi7_had_data','1');
+    }
+  },5000);
+}
+
+COLS.forEach(col=>{
+  onSnapshot(collection(db,col),snap=>{
+    state[col]=snap.docs.map(d=>({...d.data(),_id:d.id}))
+      .sort((a,b)=>{
+        const ta=a._ts?.seconds||0;
+        const tb=b._ts?.seconds||0;
+        return tb-ta;
+      });
+    renderAll();
+  },err=>{
+    console.error('Firebase error on',col,err.code,err.message);
+  });
+});
+
+const LK='mi7log';
+const glog=()=>{try{return JSON.parse(localStorage.getItem(LK))||[];}catch{return[];}};
+const slog=l=>localStorage.setItem(LK,JSON.stringify(l));
+function addLog(msg){const l=glog();l.unshift({msg,time:new Date().toLocaleTimeString('ar-SA')});if(l.length>25)l.pop();slog(l);renderLog();}
+
+function upStats(){
+  document.getElementById('s-total').textContent=COLS.reduce((a,c)=>a+state[c].length,0);
+  document.getElementById('s-wanted').textContent=state.wanted.length;
+  document.getElementById('s-vehicles').textContent=state.vehicles.length;
+  document.getElementById('s-locations').textContent=state.locations.length;
+  document.getElementById('s-personnel').textContent=state.ranks.length;
+  document.getElementById('qs1').textContent=state.locations.filter(l=>l.th==='خطر عالي'||l.th==='نشط').length;
+  document.getElementById('qs2').textContent=Math.max(0,Math.floor(state.ranks.length/3));
+  document.getElementById('qs3').textContent=state.wanted.length;
+  document.getElementById('qs4').textContent=state.photos.filter(p=>p.sc==='سري للغاية').length;
+}
+
+function rn(){
+  const q=(document.querySelector('#tab-names .inp')?.value||'').toLowerCase();
+  const f=document.querySelector('#tab-names select')?.value||'';
+  let d=state.names;
+  if(q)d=d.filter(r=>(r.fn||'').toLowerCase().includes(q)||(r.cn||'').toLowerCase().includes(q));
+  if(f)d=d.filter(r=>r.cl===f);
+  const tb=document.getElementById('nb'),cnt=document.getElementById('nc');
+  if(!d.length){tb.innerHTML=`<tr><td colspan="8"><div class="es"><div class="ei">👤</div><div class="et">لا توجد سجلات</div></div></td></tr>`;cnt.textContent='0 سجل';return;}
+  const cm2={'خطر عالي':'br','مطلوب':'br','مشتبه به':'by','مراقبة':'bb','متعاون':'bg'};
+  const sm={'نشط':'bg','مراقبة':'by','تحت التتبع':'bb','مجهول':'bz','محتجز':'br'};
+  tb.innerHTML=d.map((r,i)=>`<tr>
+    <td><button class="btn bsm btn-r" data-id="${r._id}" data-type="names" onclick="delFromBtn(this)">حذف</button></td>
+    <td><div class="av" data-img="${r.img||''}" onclick="if(this.dataset.img)openLB(this.dataset.img)">
+      ${r.img?`<img src="${r.img}">`:'👤'}
+    </div></td>
+    <td class="wn">${r.fn}</td>
+    <td class="hide-mobile"><span style="font-family:monospace;color:var(--dim);font-size:11px">${r.cn||'—'}</span></td>
+    <td class="hide-mobile" style="font-family:monospace;font-size:11px">${r.dob||'—'}</td>
+    <td class="hide-mobile"><span class="b ${cm2[r.cl]||'bz'}">${r.cl}</span></td>
+    <td class="hide-mobile"><span class="b ${sm[r.st]||'bz'}">${r.st}</span></td>
+  </tr>`).join('');
+  cnt.textContent=`${d.length} سجل`;
+}
+
+const picons={'صور ميدانية':'📷','وثائق':'🗂','تسجيلات':'🎥','خرائط':'🗺'};
+const smap={'سري للغاية':'br','سري':'by','محدود':'bz'};
+function rp(){
+  const q=(document.querySelector('#tab-photos .inp')?.value||'').toLowerCase();
+  const f=document.querySelector('#tab-photos select')?.value||'';
+  let d=state.photos;
+  if(q)d=d.filter(r=>(r.nm||'').toLowerCase().includes(q));
+  if(f)d=d.filter(r=>r.ty===f);
+  const g=document.getElementById('pg2'),cnt=document.getElementById('pc');
+  if(!d.length){g.innerHTML=`<div class="es" style="grid-column:1/-1"><div class="ei">📂</div><div class="et">لا توجد ملفات</div></div>`;cnt.textContent='0 ملف';return;}
+  g.innerHTML=d.map(r=>`<div class="ic">
+    <div class="ct" style="position:relative;overflow:hidden;${r.img?'cursor:pointer':''}" data-img="${r.img||''}" onclick="if(this.dataset.img)openLB(this.dataset.img)">
+      ${r.img?`<img src="${r.img}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">`:''}
+      <span style="position:relative;z-index:1;${r.img?'opacity:.4':''}">${picons[r.ty]||'📁'}</span>
+    </div>
+    <div class="cb">
+      <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:6px">
+        <div class="ctitle">${r.nm}</div><span class="b ${smap[r.sc]||'bz'}">${r.sc}</span>
+      </div>
+      <div class="cm"><span>📅 ${r.dt||'—'}</span><span>${r.ds||''}</span></div>
+      <div class="cf"><span class="b bb">${r.ty}</span><button class="btn bsm btn-r" data-id="${r._id}" data-type="photos" onclick="delFromBtn(this)">حذف</button></div>
+    </div>
+  </div>`).join('');
+  cnt.textContent=`${d.length} ملف`;
+}
+
+const tpc={'خطر عالي':'p-red','تحت المراقبة':'p-yellow','نشط':'p-red','مستقر':'p-green','آمن':'p-green'};
+function rl(){
+  const g=document.getElementById('lg2'),pins=document.getElementById('pins'),cnt=document.getElementById('lc2');
+  if(!state.locations.length){
+    g.innerHTML=`<div class="es" style="grid-column:1/-1"><div class="ei">📍</div><div class="et">اضغط PLACE ثم انقر على الخريطة</div></div>`;
+    if(pins)pins.innerHTML='';cnt.textContent='0 موقع';return;
+  }
+  if(pins)pins.innerHTML=state.locations.map(r=>{
+    const x=Math.max(3,Math.min(95,parseFloat(r.x)||50));
+    const y=Math.max(5,Math.min(92,parseFloat(r.y)||50));
+    const pc=tpc[r.th]||'p-blue';
+    return `<div class="pin ${pc}" style="left:${x}%;top:${y}%;pointer-events:all;" onclick="showLocPopup('${r._id}')">
+      <div class="pd"></div><div class="pl">${r.cd||r.nm}</div>
+    </div>`;
+  }).join('');
+  const bc={'خطر عالي':'br','تحت المراقبة':'by','نشط':'br','مستقر':'bg','آمن':'bg'};
+  g.innerHTML=state.locations.map(r=>`<div class="lc" id="lc-${r._id}">
+    <div class="lcc">📍 X:${parseFloat(r.x).toFixed(1)}% · Y:${parseFloat(r.y).toFixed(1)}%</div>
+    <div class="lcn">${r.nm}</div>
+    <div style="margin:4px 0"><span class="b ${bc[r.th]||'bb'}">${r.th}</span> <span class="b bz">${r.tp}</span></div>
+    <div class="lcd">${r.ds||''}</div>
+    <div style="margin-top:8px;display:flex;gap:6px;">
+      <button class="btn bsm" onclick="showLocPopup('${r._id}')">تفاصيل</button>
+      <button class="btn bsm btn-r" data-id="${r._id}" data-type="locations" onclick="delFromBtn(this)">حذف</button>
+    </div>
+  </div>`).join('');
+  cnt.textContent=`${state.locations.length} موقع`;
+}
+
+let _currentLocImg='';
+window.showLocPopup=function(id){
+  const r=state.locations.find(l=>l._id===id);if(!r)return;
+  const bc={'خطر عالي':'br','تحت المراقبة':'by','نشط':'br','مستقر':'bg','آمن':'bg'};
+  _currentLocImg=r.img||'';
+  const wrap=document.getElementById('lp-img-wrap');
+  if(r.img){
+    const img=document.createElement('img');
+    img.className='lp-img';
+    img.src=r.img;
+    img.style.cursor='zoom-in';
+    img.onclick=()=>openLB(_currentLocImg);
+    wrap.innerHTML='';
+    wrap.appendChild(img);
+  } else {
+    wrap.innerHTML='<div class="lp-ie">📍</div>';
+  }
+  document.getElementById('lp-coords').textContent=`📍 X:${parseFloat(r.x).toFixed(1)}% · Y:${parseFloat(r.y).toFixed(1)}%`;
+  document.getElementById('lp-name').textContent=r.nm;
+  document.getElementById('lp-badges').innerHTML=`<span class="b ${bc[r.th]||'bb'}">${r.th}</span> <span class="b bz">${r.tp}</span>`;
+  document.getElementById('lp-desc').textContent=r.ds||'لا يوجد وصف';
+  document.getElementById('loc-popup').classList.add('open');
+};
+
+function rv(){
+  const q=(document.querySelector('#tab-vehicles .inp')?.value||'').toLowerCase();
+  const f=document.querySelector('#tab-vehicles select')?.value||'';
+  let d=state.vehicles;
+  if(q)d=d.filter(r=>(r.pl||'').toLowerCase().includes(q)||(r.mo||'').toLowerCase().includes(q));
+  if(f)d=d.filter(r=>r.st===f);
+  const tb=document.getElementById('vb'),cnt=document.getElementById('vc2');
+  if(!d.length){tb.innerHTML=`<tr><td colspan="9"><div class="es"><div class="ei">🚗</div><div class="et">لا توجد مركبات</div></div></td></tr>`;cnt.textContent='0 مركبة';return;}
+  const tm={'عالي جداً':'br','عالي':'br','متوسط':'by','منخفض':'bg'};
+  const sm={'مراقبة':'by','مطلوب':'br','محتجز':'bg','مجهول':'bz'};
+  tb.innerHTML=d.map((r,i)=>`<tr>
+    <td><span class="mono">VEH-${String(i+1).padStart(4,'0')}</span></td>
+    <td>${r.img?`<img src="${r.img}" style="width:40px;height:32px;object-fit:cover;border:1px solid var(--border2);border-radius:2px;">`:`<span style="font-size:18px">🚗</span>`}</td>
+    <td><span style="font-family:monospace;font-size:11.5px;background:rgba(0,212,255,.07);padding:2px 8px;border:1px solid var(--border2)">${r.pl}</span></td>
+    <td class="wn">${r.mo||'—'}</td><td>${r.cl||'—'}</td>
+    <td style="font-family:monospace">${r.yr||'—'}</td>
+    <td style="font-size:11px">${r.ls||'—'}</td>
+    <td><span class="b ${tm[r.th]||'bz'}">${r.th}</span></td>
+    <td><span class="b ${sm[r.st]||'bz'}">${r.st}</span></td>
+    <td><button class="btn bsm btn-r" data-id="${r._id}" data-type="vehicles" onclick="delFromBtn(this)">حذف</button></td>
+  </tr>`).join('');
+  cnt.textContent=`${d.length} مركبة`;
+}
+
+function rw(){
+  const g=document.getElementById('wg2'),cnt=document.getElementById('wc2');
+  if(!state.wanted.length){g.innerHTML=`<div class="es" style="grid-column:1/-1"><div class="ei">🎯</div><div class="et">لا يوجد مطلوبون</div></div>`;cnt.textContent='0 مطلوب';return;}
+  const lm={'خطر شديد':'br','خطر عالي':'br','مراقبة مستمرة':'by'};
+  g.innerHTML=state.wanted.map((r,i)=>`<div class="wc">
+    <div class="wct"><span class="wcl">⚠ مطلوب</span><span class="wcr">سري</span></div>
+    <div class="wcp-img" data-img="${r.img||''}" onclick="if(this.dataset.img)openLB(this.dataset.img)">
+      ${r.img?`<img src="${r.img}">`:'🎭'}
+    </div>
+    <div class="wcn">${r.fn}</div>
+    <div class="wca">CODENAME: ${r.cn||'—'}</div>
+    <div style="text-align:center;margin-bottom:8px"><span class="b ${lm[r.lv]||'bz'}">${r.lv}</span></div>
+    <div class="wcd">الجريمة: ${r.cr||'—'}<br>آخر موقع: ${r.lc||'—'}<br>رقم الملف: WNT-${String(i+1).padStart(4,'0')}<br>تاريخ الإدراج: ${r.dt||'—'}</div>
+    <div style="padding:0 12px 12px"><button class="btn bsm btn-r" data-id="${r._id}" data-type="wanted" onclick="delFromBtn(this)">حذف</button></div>
+  </div>`).join('');
+  cnt.textContent=`${state.wanted.length} مطلوب`;
+}
+
+const rdef=[
+  {i:'🌟',ar:'قائد الاستخبارات الرئاسية',en:'LEADER OF PRESIDENT INTLIGENCE '},
+  {i:'⭐',ar:'عميد',en:'BRIGADIER'},
+  {i:'🔰',ar:'عقيد',en:'COLONEL'},
+  {i:'🏅',ar:'مقدم',en:'LT. COLONEL'},
+  {i:'🎖',ar:'رائد',en:'MAJOR'},
+  {i:'🔷',ar:'نقيب',en:'CAPTAIN'},
+  {i:'🔹',ar:'ملازم أول',en:'1ST LT.'},
+  {i:'◾',ar:'ملازم',en:'LT'},
+  {i:'◾',ar:'رئيس رقباء',en:'LT'},
+  {i:'◾',ar:'رقيب اول',en:'LT'},
+  {i:'◾',ar:'رقيب',en:'LT'},
+  {i:'◾',ar:'وكيل رقيب',en:'LT'},
+  {i:'◾',ar:'عريف',en:'LT'},
+  {i:'◾',ar:'جندي اول',en:'LT'},
+  {i:'◾',ar:'جندي',en:'LT'},
+  {i:'◾',ar:'مستجد',en:''},
+];
+function rr(){
+  const g=document.getElementById('rg2');
+  const mx=Math.max(1,...rdef.map(d=>state.ranks.filter(r=>r.rk===d.ar).length));
+  g.innerHTML=rdef.map(d=>{
+    const c=state.ranks.filter(r=>r.rk===d.ar).length;
+    const p=Math.round((c/mx)*100)||0;
+    return `<div class="rk" style="cursor:pointer;" onclick="showRankPage('${d.ar}','${d.en}')">
+      <span class="ri">${d.i}</span><div class="rn">${d.ar}</div><div class="re">${d.en}</div>
+      <div class="rc">${c}</div><div style="font-size:10px;color:var(--dim)">فرد — اضغط للعرض</div>
+      <div class="rb"><div class="rf" style="width:${p}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+window.showRankPage=function(rankAr,rankEn){
+  const members=state.ranks.filter(r=>r.rk===rankAr);
+  document.getElementById('rp-rank-name').textContent=rankAr;
+  document.getElementById('rp-rank-en').textContent=rankEn||'';
+  document.getElementById('rp-count').textContent=members.length+' فرد';
+  const g=document.getElementById('rpg');
+  if(!members.length){
+    g.innerHTML=`<div class="es" style="grid-column:1/-1"><div class="ei">👤</div><div class="et">لا يوجد أفراد بهذه الرتبة</div></div>`;
+  } else {
+    const stColors={'نشط':'bg','في مهمة':'by','إجازة':'bz','متقاعد':'br'};
+    g.innerHTML=members.map((r,i)=>`<div class="rpc">
+      <div class="rpc-img" data-img="${r.img||''}" onclick="if(this.dataset.img)openLB(this.dataset.img)" style="${r.img?'cursor:pointer':''}">
+        ${r.img?`<img src="${r.img}">`:'👤'}</div>
+      <div class="rpc-name">${r.fn}</div>
+      <div class="rpc-dept">${r.dp||'—'}</div>
+      <div><span class="b ${stColors[r.st]||'bz'}">${r.st}</span></div>
+      ${r.dt?`<div style="font-size:9px;color:var(--dim);margin-top:6px;font-family:monospace">${r.dt}</div>`:''}
+      <button class="btn bsm btn-r" style="margin-top:8px" onclick="del('ranks','${r._id}')">حذف</button>
+    </div>`).join('');
+  }
+  document.getElementById('rank-page').classList.add('open');
+};
+window.closeRankPage=function(){document.getElementById('rank-page').classList.remove('open');};
+
+function renderLog(){
+  const log=glog(),el=document.getElementById('alog');
+  if(!log.length){el.innerHTML=`<div class="es"><div class="ei">📋</div><div class="et">لا يوجد نشاط</div></div>`;return;}
+  const cols=['var(--accent2)','var(--accent3)','var(--green)','var(--accent)'];
+  el.innerHTML=log.map((l,i)=>`<div class="ai"><div class="ad" style="background:${cols[i%4]}"></div><div><div class="at">${l.msg}</div><div class="atm">${l.time}</div></div></div>`).join('');
+}
+
+function renderAll(){rn();rp();rl();rv();rw();rr();upStats();}
+
+window.openLB=function(src){
+  if(!src)return;
+  document.getElementById('lb-img').src=src;
+  document.getElementById('lightbox').classList.add('open');
+};
+window.closeLB=function(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lb-img').src='';
+};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')window.closeLB();});
+
+function readImg(inputId){
+  return new Promise(res=>{
+    const f=document.getElementById(inputId)?.files?.[0];
+    if(!f){res('');return;}
+    if(f.size>1500000){toast('الصورة كبيرة جداً — استخدم صورة أقل من 1.5MB','err');res('');return;}
+    const reader=new FileReader();
+    reader.onload=e=>res(e.target.result);
+    reader.readAsDataURL(f);
+  });
+}
+
+window.prevImg=function(input,prevId){
+  const f=input.files?.[0];if(!f)return;
+  const prev=document.getElementById(prevId);
+  const reader=new FileReader();
+  reader.onload=e=>{
+    prev.innerHTML=`<img src="${e.target.result}">`;
+  };
+  reader.readAsDataURL(f);
+};
+
+let pendX=50,pendY=50;
+async function save(type){
+  let r={},msg='';
+  if(type==='names'){
+    const fn=document.getElementById('nfn').value.trim();
+    if(!fn){alert('أدخل الاسم الكامل');return;}
+    const nimg=await readImg('n-img');
+    r={fn,cn:document.getElementById('ncd').value.trim(),dob:document.getElementById('ndb').value,cl:document.getElementById('ncl').value,st:document.getElementById('nst').value,nt:document.getElementById('nnt').value.trim(),img:nimg,dt:new Date().toLocaleDateString('ar-SA'),_ts:serverTimestamp()};
+    msg=`إضافة سجل: ${fn}`;cm('mn');
+    ['nfn','ncd','nnt'].forEach(id=>document.getElementById(id).value='');document.getElementById('ndb').value='';
+    document.getElementById('n-img').value='';document.getElementById('n-prev').innerHTML='<span class="img-prev-lbl">📎 اضغط لرفع صورة</span>';
+  } else if(type==='photos'){
+    const nm=document.getElementById('pnm').value.trim();
+    if(!nm){alert('أدخل اسم الملف');return;}
+    const img=await readImg('p-img');
+    r={nm,ty:document.getElementById('pty').value,sc:document.getElementById('psc').value,ds:document.getElementById('pds').value.trim(),img,dt:new Date().toLocaleDateString('ar-SA'),_ts:serverTimestamp()};
+    msg=`رفع ملف: ${nm}`;cm('mp');
+    ['pnm','pds'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('p-img').value='';document.getElementById('p-prev').innerHTML='<span class="img-prev-lbl">📎 اضغط لرفع صورة</span>';
+  } else if(type==='locations'){
+    const nm=document.getElementById('lnm').value.trim();
+    if(!nm){alert('أدخل اسم الموقع');return;}
+    const img=await readImg('l-img');
+    const xi=document.getElementById('lx').value||pendX;
+    const yi=document.getElementById('ly').value||pendY;
+    r={nm,cd:document.getElementById('lcd').value.trim(),x:xi,y:yi,th:document.getElementById('lth').value,tp:document.getElementById('ltp').value,ds:document.getElementById('lds').value.trim(),img,dt:new Date().toLocaleDateString('ar-SA'),_ts:serverTimestamp()};
+    msg=`إضافة موقع: ${nm}`;cm('ml');pendX=50;pendY=50;
+    ['lnm','lcd','lx','ly','lds'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('l-img').value='';document.getElementById('l-prev').innerHTML='<span class="img-prev-lbl">📎 اضغط لرفع صورة</span>';
+  } else if(type==='vehicles'){
+    const pl=document.getElementById('vpl').value.trim();
+    if(!pl){alert('أدخل رقم اللوحة');return;}
+    const img=await readImg('v-img');
+    r={pl,mo:document.getElementById('vmo').value.trim(),cl:document.getElementById('vcl').value.trim(),yr:document.getElementById('vyr').value,lk:document.getElementById('vlk').value.trim(),ls:document.getElementById('vls').value.trim(),th:document.getElementById('vth').value,st:document.getElementById('vst').value,img,dt:new Date().toLocaleDateString('ar-SA'),_ts:serverTimestamp()};
+    msg=`إضافة مركبة: ${pl}`;cm('mv');
+    ['vpl','vmo','vcl','vyr','vlk','vls'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('v-img').value='';document.getElementById('v-prev').innerHTML='<span class="img-prev-lbl">📎 اضغط لرفع صورة</span>';
+  } else if(type==='wanted'){
+    const fn=document.getElementById('wfn').value.trim();
+    if(!fn){alert('أدخل الاسم');return;}
+    const wimg=await readImg('w-img');
+    r={fn,cn:document.getElementById('wcd').value.trim(),cr:document.getElementById('wcr').value.trim(),lv:document.getElementById('wlv').value,lc:document.getElementById('wlc').value.trim(),dt:document.getElementById('wdt').value,nt:document.getElementById('wnt').value.trim(),img:wimg,_ts:serverTimestamp()};
+    msg=`إدراج مطلوب: ${fn}`;cm('mw2');
+    ['wfn','wcd','wcr','wlc','wnt'].forEach(id=>document.getElementById(id).value='');document.getElementById('wdt').value='';
+    document.getElementById('w-img').value='';document.getElementById('w-prev').innerHTML='<span class="img-prev-lbl">📎 اضغط لرفع صورة</span>';
+  } else if(type==='ranks'){
+    const fn=document.getElementById('rfn').value.trim();
+    if(!fn){alert('أدخل الاسم');return;}
+    r={fn,rk:document.getElementById('rrk').value,dp:document.getElementById('rdp').value,dt:document.getElementById('rdt').value,st:document.getElementById('rst').value,_ts:serverTimestamp()};
+    msg=`تسجيل فرد: ${fn} — ${r.rk}`;cm('mr');
+    document.getElementById('rfn').value='';document.getElementById('rdt').value='';
+  }
+  try{await addDoc(collection(db,type),r);addLog(msg);toast('✓ تم الحفظ','ok');}
+  catch(e){toast('✗ '+e.message,'err');}
+}
+window.save=save;
+
+async function del(type,id){
+  if(!confirm('هل تريد حذف هذا السجل؟'))return;
+  try{await deleteDoc(doc(db,type,id));addLog('حذف سجل من '+type);toast('✓ تم الحذف','ok');}
+  catch(e){toast('✗ '+e.message,'err');}
+}
+window.del=del;
+window.delFromBtn=function(btn){
+  const id=btn.getAttribute('data-id');
+  const type=btn.getAttribute('data-type');
+  del(type,id);
+};
+
+function sw(id,btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tc').forEach(c=>c.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');btn.classList.add('active');
+}
+window.sw=sw;
+
+function om(id){document.getElementById(id).classList.add('open');}
+function cm(id){document.getElementById(id).classList.remove('open');}
+window.om=om;window.cm=cm;
+document.querySelectorAll('.mo').forEach(o=>o.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');}));
+
+function tick(){const n=new Date();document.getElementById('clk').textContent=`${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}:${String(n.getSeconds()).padStart(2,'0')}`;}
+setInterval(tick,1000);tick();
+
+let mapMode='view',isPan=false,panSX=0,panSY=0;
+let mapScale=1,mapOX=0,mapOY=0,panSOX=0,panSOY=0;
+
+function applyTransform(){
+  const img=document.getElementById('mimg');
+  const pins=document.getElementById('pins');
+  if(!img)return;
+  img.style.transformOrigin='0 0';
+  img.style.transform=`translate(${mapOX}px,${mapOY}px) scale(${mapScale})`;
+  if(pins){pins.style.transformOrigin='0 0';pins.style.transform=`translate(${mapOX}px,${mapOY}px) scale(${mapScale})`;}
+}
+
+window.mZoom=function(f){mapScale=Math.max(0.4,Math.min(5,mapScale*f));applyTransform();};
+window.mReset=function(){mapScale=1;mapOX=0;mapOY=0;applyTransform();};
+
+window.setMode=function(m){
+  mapMode=m;
+  const mw=document.getElementById('mw');
+  const hint=document.getElementById('mhint');
+  ['view','place','pan'].forEach(k=>{const b=document.getElementById('mb-'+k);if(b)b.className='mmb'+(m===k?' on':'');});
+  mw.style.cursor=m==='place'?'crosshair':m==='pan'?'grab':'default';
+  if(hint)hint.style.display=m==='place'?'block':'none';
+};
+
+function toMapPct(clientX,clientY){
+  const rect=document.getElementById('mw').getBoundingClientRect();
+  const rx=(clientX-rect.left)/rect.width;
+  const ry=(clientY-rect.top)/rect.height;
+  const mx=(rx*rect.width-mapOX)/mapScale/rect.width*100;
+  const my=(ry*rect.height-mapOY)/mapScale/rect.height*100;
+  return{x:Math.max(1,Math.min(99,mx)),y:Math.max(1,Math.min(99,my))};
+}
+
+const mwel=document.getElementById('mw');
+if(mwel){
+  mwel.addEventListener('mousemove',function(e){
+    const p=toMapPct(e.clientX,e.clientY);
+    document.getElementById('mcoords').textContent=`LOS SANTOS — X:${p.x.toFixed(1)}% / Y:${p.y.toFixed(1)}%`;
+    if(isPan&&mapMode==='pan'){mapOX=panSOX+(e.clientX-panSX);mapOY=panSOY+(e.clientY-panSY);applyTransform();}
+  });
+  mwel.addEventListener('mousedown',e=>{
+    if(mapMode==='pan'){isPan=true;panSX=e.clientX;panSY=e.clientY;panSOX=mapOX;panSOY=mapOY;mwel.style.cursor='grabbing';}
+  });
+  mwel.addEventListener('mouseup',()=>{isPan=false;if(mapMode==='pan')mwel.style.cursor='grab';});
+  mwel.addEventListener('mouseleave',()=>{isPan=false;document.getElementById('mcoords').textContent='LOS SANTOS — HOVER TO SCAN';});
+  mwel.addEventListener('click',function(e){
+    if(mapMode!=='place')return;
+    if(e.target.closest('.pin')||e.target.closest('.mzb'))return;
+    const p=toMapPct(e.clientX,e.clientY);
+    pendX=parseFloat(p.x.toFixed(1));pendY=parseFloat(p.y.toFixed(1));
+    const lx=document.getElementById('lx'),ly=document.getElementById('ly');
+    if(lx)lx.value=pendX;if(ly)ly.value=pendY;
+    const tmp=document.createElement('div');
+    tmp.style.cssText=`position:absolute;left:${p.x}%;top:${p.y}%;transform:translate(-50%,-50%);width:20px;height:20px;border-radius:50%;border:2px dashed var(--accent2);box-shadow:0 0 14px var(--accent2);z-index:9;pointer-events:none;animation:pp 1s infinite;`;
+    document.getElementById('pins').appendChild(tmp);setTimeout(()=>tmp.remove(),2500);
+    om('ml');
+  });
+  mwel.addEventListener('wheel',e=>{e.preventDefault();mZoom(e.deltaY<0?1.1:0.91);},{passive:false});
+  let td=null;
+  mwel.addEventListener('touchstart',e=>{if(e.touches.length===2)td=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);});
+  mwel.addEventListener('touchmove',e=>{if(e.touches.length===2&&td){const nd=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);mapScale=Math.max(0.4,Math.min(5,mapScale*(nd/td)));td=nd;applyTransform();e.preventDefault();}},{passive:false});
+  mwel.addEventListener('touchend',()=>td=null);
+}
+
+renderLog();renderAll();checkFirebase();
+</script>
+</body>
+</html>
