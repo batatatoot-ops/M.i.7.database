@@ -287,10 +287,258 @@ select.inp{cursor:pointer;flex:0 0 155px;}
   .hide-mobile{display:none !important;}
   .dt td,.dt th{padding:7px 8px;font-size:11px;}
 }
+
+/* ═══ LOGIN SCREEN ═══ */
+#login-screen{
+  display:flex;position:fixed;inset:0;z-index:99999;
+  background:var(--black);
+  align-items:center;justify-content:center;
+  flex-direction:column;
+  transition:opacity .5s;
+}
+#login-screen.hide{opacity:0;pointer-events:none;}
+.ls-bg{position:absolute;inset:0;
+  background-image:linear-gradient(rgba(0,212,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.03) 1px,transparent 1px);
+  background-size:48px 48px;}
+.ls-scan{position:absolute;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.07) 2px,rgba(0,0,0,.07) 4px);
+  pointer-events:none;}
+.ls-wrap{
+  position:relative;z-index:2;
+  width:100%;max-width:400px;padding:0 20px;
+}
+/* شعار */
+.ls-logo-wrap{text-align:center;margin-bottom:28px;}
+.ls-logo{width:80px;height:80px;object-fit:contain;filter:drop-shadow(0 0 16px var(--accent));margin-bottom:10px;}
+.ls-logo-fb{width:80px;height:80px;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:20px;color:var(--accent);text-shadow:var(--glow);background:rgba(0,212,255,.06);border:2px solid rgba(0,212,255,.3);border-radius:50%;margin:0 auto 10px;}
+.ls-org{font-family:'Cairo',sans-serif;font-size:20px;font-weight:900;color:#fff;letter-spacing:3px;text-shadow:0 0 30px rgba(0,212,255,.4);}
+.ls-org-en{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent);letter-spacing:3px;margin-top:3px;}
+.ls-classified{display:inline-block;margin-top:8px;background:rgba(255,48,48,.1);border:1px solid rgba(255,48,48,.4);color:var(--accent2);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;padding:3px 14px;}
+/* البوكس الحكومي */
+.ls-box{
+  background:rgba(8,15,24,.95);
+  border:1px solid var(--border2);
+  box-shadow:0 0 40px rgba(0,212,255,.08),0 0 0 1px rgba(0,212,255,.05);
+  position:relative;overflow:hidden;
+}
+.ls-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  box-shadow:var(--glow);}
+.ls-box-hdr{
+  background:rgba(0,212,255,.05);
+  border-bottom:1px solid var(--border);
+  padding:12px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.ls-box-title{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:2px;}
+.ls-box-id{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);}
+.ls-body{padding:24px 20px 20px;}
+/* tabs */
+.ls-tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:1px solid var(--border);}
+.ls-tab{flex:1;padding:8px;background:transparent;border:none;border-bottom:2px solid transparent;
+  color:var(--dim);font-family:'Cairo',sans-serif;font-size:12px;cursor:pointer;transition:.2s;margin-bottom:-1px;}
+.ls-tab.on{color:var(--accent);border-bottom-color:var(--accent);background:rgba(0,212,255,.05);}
+/* حقول */
+.ls-field{margin-bottom:14px;}
+.ls-lbl{display:block;font-family:'Share Tech Mono',monospace;font-size:9.5px;color:var(--dim);letter-spacing:2px;margin-bottom:6px;}
+.ls-inp{
+  width:100%;background:rgba(2,8,16,.8);
+  border:1px solid var(--border2);color:#fff;
+  padding:10px 14px;font-family:'Cairo',sans-serif;font-size:14px;
+  outline:none;transition:.2s;
+  -webkit-appearance:none;border-radius:0;
+}
+.ls-inp:focus{border-color:var(--accent);box-shadow:var(--glow);}
+.ls-inp::placeholder{color:var(--dim);font-size:12px;}
+/* زر الدخول */
+.ls-btn{
+  width:100%;padding:12px;margin-top:6px;
+  background:rgba(0,212,255,.12);
+  border:1px solid var(--accent);
+  color:var(--accent);font-family:'Cairo',sans-serif;font-size:14px;font-weight:700;
+  cursor:pointer;transition:.25s;letter-spacing:2px;position:relative;overflow:hidden;
+}
+.ls-btn:hover{background:rgba(0,212,255,.22);box-shadow:var(--glow);}
+.ls-btn:active{transform:scale(.98);}
+.ls-btn:disabled{opacity:.5;cursor:not-allowed;}
+.ls-btn-loader{display:inline-block;width:14px;height:14px;border:2px solid rgba(0,212,255,.3);
+  border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-left:6px;}
+/* خطأ */
+.ls-err{
+  background:rgba(255,48,48,.08);border:1px solid rgba(255,48,48,.3);
+  color:var(--accent2);font-family:'Share Tech Mono',monospace;font-size:10px;
+  padding:8px 12px;margin-top:10px;display:none;letter-spacing:1px;text-align:center;
+}
+.ls-err.show{display:block;}
+/* تحذير */
+.ls-warn{
+  background:rgba(255,195,0,.06);border-right:2px solid var(--accent3);
+  padding:8px 12px;margin-bottom:16px;font-size:11px;color:var(--accent3);
+  font-family:'Share Tech Mono',monospace;letter-spacing:1px;
+}
+/* footer */
+.ls-footer{text-align:center;margin-top:14px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);line-height:1.8;}
+/* زر تسجيل الخروج في الـ topbar */
+.logout-btn{padding:3px 10px;background:rgba(255,48,48,.09);border:1px solid rgba(255,48,48,.3);
+  color:var(--accent2);font-family:'Share Tech Mono',monospace;font-size:9px;cursor:pointer;transition:.2s;letter-spacing:1px;}
+.logout-btn:hover{background:rgba(255,48,48,.2);}
+.user-chip{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--green);
+  background:rgba(0,255,127,.07);border:1px solid rgba(0,255,127,.2);padding:3px 8px;
+  max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+/* loading overlay */
+#auth-loading{display:flex;position:fixed;inset:0;z-index:99998;background:var(--black);
+  align-items:center;justify-content:center;flex-direction:column;gap:14px;}
+#auth-loading.hide{display:none;}
+.auth-spinner{width:40px;height:40px;border:3px solid rgba(0,212,255,.15);
+  border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;}
+.auth-load-txt{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--dim);letter-spacing:3px;}
+
+/* ACTIVATION SCREEN */
+#activation-screen{
+  display:none;position:fixed;inset:0;z-index:99990;
+  background:rgba(2,4,8,.97);
+  align-items:center;justify-content:center;
+  backdrop-filter:blur(8px);
+}
+#activation-screen.open{display:flex;}
+.act-wrap{position:relative;z-index:2;width:100%;max-width:380px;padding:0 20px;}
+.act-box{background:rgba(8,15,24,.97);border:1px solid var(--border2);position:relative;overflow:hidden;}
+.act-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--accent3),transparent);
+  box-shadow:0 0 18px rgba(255,195,0,.4);}
+.act-hdr{background:rgba(255,195,0,.05);border-bottom:1px solid var(--border);
+  padding:12px 20px;display:flex;align-items:center;gap:10px;}
+.act-hdr-icon{font-size:18px;}
+.act-hdr-title{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent3);letter-spacing:2px;}
+.act-body{padding:22px 20px;}
+.act-desc{font-size:12px;color:var(--dim);line-height:1.8;margin-bottom:18px;font-family:'Share Tech Mono',monospace;letter-spacing:1px;}
+.act-inp-wrap{position:relative;margin-bottom:14px;}
+.act-inp{
+  width:100%;background:rgba(2,8,16,.9);
+  border:1px solid var(--accent3);color:var(--accent3);
+  padding:12px 14px;font-family:'Share Tech Mono',monospace;
+  font-size:18px;letter-spacing:6px;text-align:center;
+  outline:none;transition:.2s;text-transform:uppercase;
+  border-radius:0;-webkit-appearance:none;
+}
+.act-inp:focus{box-shadow:0 0 18px rgba(255,195,0,.25);}
+.act-inp::placeholder{color:var(--dim);font-size:13px;letter-spacing:3px;}
+.act-btn{
+  width:100%;padding:11px;
+  background:rgba(255,195,0,.1);border:1px solid var(--accent3);
+  color:var(--accent3);font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;
+  cursor:pointer;transition:.25s;letter-spacing:2px;
+}
+.act-btn:hover{background:rgba(255,195,0,.2);box-shadow:0 0 18px rgba(255,195,0,.3);}
+.act-btn:disabled{opacity:.5;cursor:not-allowed;}
+.act-err{background:rgba(255,48,48,.08);border:1px solid rgba(255,48,48,.3);
+  color:var(--accent2);font-family:'Share Tech Mono',monospace;font-size:10px;
+  padding:7px 12px;margin-top:10px;display:none;letter-spacing:1px;text-align:center;}
+.act-err.show{display:block;}
+.act-ok{background:rgba(0,255,127,.07);border:1px solid rgba(0,255,127,.3);
+  color:var(--green);font-family:'Share Tech Mono',monospace;font-size:10px;
+  padding:7px 12px;margin-top:10px;display:none;letter-spacing:1px;text-align:center;}
+.act-ok.show{display:block;}
+.act-note{text-align:center;margin-top:14px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--dim);line-height:1.8;}
+/* شارة مستخدم مفعّل / غير مفعّل في topbar */
+.act-badge-on{padding:3px 8px;background:rgba(0,255,127,.08);border:1px solid rgba(0,255,127,.25);
+  color:var(--green);font-family:'Share Tech Mono',monospace;font-size:9px;cursor:pointer;}
+.act-badge-off{padding:3px 8px;background:rgba(255,195,0,.08);border:1px solid rgba(255,195,0,.3);
+  color:var(--accent3);font-family:'Share Tech Mono',monospace;font-size:9px;cursor:pointer;animation:blink 2s infinite;}
+/* overlay readonly */
+.readonly-bar{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:5000;
+  background:rgba(255,195,0,.1);border-top:1px solid rgba(255,195,0,.3);
+  padding:6px 16px;text-align:center;font-family:'Share Tech Mono',monospace;
+  font-size:10px;color:var(--accent3);letter-spacing:2px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.readonly-bar.show{display:flex;}
+.ro-act-btn{padding:2px 10px;border:1px solid var(--accent3);background:transparent;
+  color:var(--accent3);font-family:'Share Tech Mono',monospace;font-size:9px;cursor:pointer;transition:.2s;}
+.ro-act-btn:hover{background:rgba(255,195,0,.15);}
 </style>
 </head>
 <body>
 
+
+
+<!-- AUTH LOADING -->
+<div id="auth-loading">
+  <div class="auth-spinner"></div>
+  <div class="auth-load-txt">AUTHENTICATING...</div>
+</div>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="ls-bg"></div>
+  <div class="ls-scan"></div>
+  <div class="ls-wrap">
+    <!-- شعار -->
+    <div class="ls-logo-wrap">
+      <img src="logo.png" class="ls-logo" alt="MI.7"
+        onerror="this.outerHTML='<div class=\'ls-logo-fb\'>MI.7</div>'">
+      <div class="ls-org">الاستخبارات الرئاسية</div>
+      <div class="ls-org-en">PRESIDENTIAL INTELLIGENCE — MI.7</div>
+      <div class="ls-classified">سري للغاية — CLASSIFIED</div>
+    </div>
+    <!-- بوكس تسجيل الدخول -->
+    <div class="ls-box">
+      <div class="ls-box-hdr">
+        <span class="ls-box-title">◈ SECURE ACCESS PORTAL</span>
+        <span class="ls-box-id" id="ls-session-id">SID: ——————</span>
+      </div>
+      <div class="ls-body">
+        <div class="ls-warn">⚠ هذا النظام مخصص للأفراد المخولين فقط — كل محاولة دخول تُسجَّل وتُراقَب</div>
+        <!-- tabs -->
+        <div class="ls-tabs">
+          <button class="ls-tab on" onclick="lsTab('login',this)">تسجيل الدخول</button>
+          <button class="ls-tab" onclick="lsTab('register',this)">إنشاء حساب</button>
+        </div>
+        <!-- LOGIN -->
+        <div id="ls-login">
+          <div class="ls-field">
+            <label class="ls-lbl">البريد الإلكتروني</label>
+            <input class="ls-inp" id="ls-email" type="email" placeholder="example@mi7.gov" autocomplete="email">
+          </div>
+          <div class="ls-field">
+            <label class="ls-lbl">كلمة المرور</label>
+            <input class="ls-inp" id="ls-pass" type="password" placeholder="••••••••" autocomplete="current-password">
+          </div>
+          <button class="ls-btn" id="ls-login-btn" onclick="doLogin()">
+            ◈ &nbsp; دخول آمن
+          </button>
+          <div class="ls-err" id="ls-login-err"></div>
+        </div>
+        <!-- REGISTER -->
+        <div id="ls-register" style="display:none;">
+          <div class="ls-field">
+            <label class="ls-lbl">البريد الإلكتروني</label>
+            <input class="ls-inp" id="ls-reg-email" type="email" placeholder="example@mi7.gov" autocomplete="email">
+          </div>
+          <div class="ls-field">
+            <label class="ls-lbl">كلمة المرور</label>
+            <input class="ls-inp" id="ls-reg-pass" type="password" placeholder="6 أحرف على الأقل" autocomplete="new-password">
+          </div>
+          <div class="ls-field">
+            <label class="ls-lbl">تأكيد كلمة المرور</label>
+            <input class="ls-inp" id="ls-reg-pass2" type="password" placeholder="أعد كتابة كلمة المرور" autocomplete="new-password">
+          </div>
+          <button class="ls-btn" id="ls-reg-btn" onclick="doRegister()">
+            ◈ &nbsp; إنشاء حساب
+          </button>
+          <div class="ls-err" id="ls-reg-err"></div>
+        </div>
+      </div>
+    </div>
+    <!-- footer -->
+    <div class="ls-footer">
+      MI.7 PRESIDENTIAL INTELLIGENCE — SECURE SYSTEM v2.0<br>
+      ALL ACCESS ATTEMPTS ARE LOGGED AND MONITORED<br>
+      © CLASSIFIED — UNAUTHORIZED ACCESS IS PROHIBITED
+    </div>
+  </div>
+</div>
 
 <div class="topbar">
   <div class="tbl">
@@ -304,6 +552,9 @@ select.inp{cursor:pointer;flex:0 0 155px;}
     <div class="spl"><div class="dot"></div>ONLINE</div>
     <div class="clk" id="clk">--:--:--</div>
     <div class="tb-badge">TOP SECRET</div>
+    <div class="user-chip" id="user-chip" style="display:none"></div>
+    <div id="act-badge" style="display:none"></div>
+    <button class="logout-btn" id="logout-btn" style="display:none" onclick="doLogout()">⏻ خروج</button>
   </div>
 </div>
 
@@ -649,15 +900,66 @@ select.inp{cursor:pointer;flex:0 0 155px;}
   <div class="lb-close" onclick="closeLB()">✕</div>
   <img id="lb-img" src="" alt="">
 </div>
+
+<!-- ACTIVATION SCREEN -->
+<div id="activation-screen">
+  <div class="act-wrap">
+    <div class="act-box">
+      <div class="act-hdr">
+        <span class="act-hdr-icon">🔐</span>
+        <span class="act-hdr-title">ACTIVATION REQUIRED — تفعيل الحساب</span>
+      </div>
+      <div class="act-body">
+        <div class="act-desc">
+          حسابك بحاجة إلى كود تفعيل للحصول على صلاحيات الكتابة.<br>
+          بدون التفعيل يمكنك العرض فقط.
+        </div>
+        <div class="act-inp-wrap">
+          <input class="act-inp" id="act-code-inp" placeholder="XXXXXXXX" maxlength="12" 
+            onkeydown="if(event.key==='Enter')submitActivation()">
+        </div>
+        <button class="act-btn" id="act-submit-btn" onclick="submitActivation()">
+          ◈ &nbsp; تفعيل الحساب
+        </button>
+        <div class="act-err" id="act-err"></div>
+        <div class="act-ok" id="act-ok">✓ تم التفعيل — مرحباً بك</div>
+      </div>
+    </div>
+    <div class="act-note">
+      تواصل مع مدير النظام للحصول على كود التفعيل<br>
+      CONTACT SYSTEM ADMIN FOR ACTIVATION CODE
+    </div>
+  </div>
+</div>
+
+<!-- READONLY BAR -->
+<div class="readonly-bar" id="readonly-bar">
+  <span>⚠ وضع العرض فقط — حسابك غير مفعّل</span>
+  <button class="ro-act-btn" onclick="openActivation()">إدخال كود التفعيل</button>
+</div>
+
 <div id="fbt" class="fbt"></div>
 
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import{getFirestore,collection,addDoc,deleteDoc,doc,onSnapshot,serverTimestamp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import{getFirestore,collection,addDoc,deleteDoc,doc,onSnapshot,serverTimestamp,getDoc,setDoc}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import{getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const app=initializeApp({apiKey:"AIzaSyAuwH-WjKylhdcShelZNFgQU41TwFX5TUI",authDomain:"mi-7-e668a.firebaseapp.com",projectId:"mi-7-e668a",storageBucket:"mi-7-e668a.firebasestorage.app",messagingSenderId:"1041043504143",appId:"1:1041043504143:web:26705fd11fd1e0bef8777a"});
 const db=getFirestore(app);
+const auth=getAuth(app);
 const state={names:[],photos:[],locations:[],vehicles:[],wanted:[],ranks:[]};
+let isActivated=false;
+let currentUser=null;
+
+function guardWrite(){
+  if(!isActivated){
+    document.getElementById('readonly-bar').classList.add('show');
+    toast('✗ حسابك غير مفعّل — للكتابة أدخل كود التفعيل','err');
+    return false;
+  }
+  return true;
+}
 const COLS=['names','photos','locations','vehicles','wanted','ranks'];
 
 function toast(msg,type=''){
@@ -677,19 +979,7 @@ function checkFirebase(){
   },5000);
 }
 
-COLS.forEach(col=>{
-  onSnapshot(collection(db,col),snap=>{
-    state[col]=snap.docs.map(d=>({...d.data(),_id:d.id}))
-      .sort((a,b)=>{
-        const ta=a._ts?.seconds||0;
-        const tb=b._ts?.seconds||0;
-        return tb-ta;
-      });
-    renderAll();
-  },err=>{
-    console.error('Firebase error on',col,err.code,err.message);
-  });
-});
+/* Firestore listeners started after auth — see onAuthStateChanged */
 
 const LK='mi7log';
 const glog=()=>{try{return JSON.parse(localStorage.getItem(LK))||[];}catch{return[];}};
@@ -952,6 +1242,7 @@ window.prevImg=function(input,prevId){
 
 let pendX=50,pendY=50;
 async function save(type){
+  if(!guardWrite())return;
   let r={},msg='';
   if(type==='names'){
     const fn=document.getElementById('nfn').value.trim();
@@ -1008,6 +1299,7 @@ async function save(type){
 window.save=save;
 
 async function del(type,id){
+  if(!guardWrite())return;
   if(!confirm('هل تريد حذف هذا السجل؟'))return;
   try{await deleteDoc(doc(db,type,id));addLog('حذف سجل من '+type);toast('✓ تم الحذف','ok');}
   catch(e){toast('✗ '+e.message,'err');}
@@ -1098,7 +1390,210 @@ if(mwel){
   mwel.addEventListener('touchend',()=>td=null);
 }
 
-renderLog();renderAll();checkFirebase();
+
+/* ══════════ AUTH LOGIC ══════════ */
+function lsTab(tab,btn){
+  document.querySelectorAll('.ls-tab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('ls-login').style.display=tab==='login'?'block':'none';
+  document.getElementById('ls-register').style.display=tab==='register'?'block':'none';
+}
+window.lsTab=lsTab;
+
+function setLoginLoading(btnId,loading){
+  const btn=document.getElementById(btnId);
+  if(loading){btn.disabled=true;btn.innerHTML='◈ &nbsp; جاري التحقق... <span class="ls-btn-loader"></span>';}
+  else{
+    btn.disabled=false;
+    btn.innerHTML=btnId==='ls-login-btn'?'◈ &nbsp; دخول آمن':'◈ &nbsp; إنشاء حساب';
+  }
+}
+
+const errMsgs={
+  'auth/invalid-email':'البريد الإلكتروني غير صحيح',
+  'auth/user-not-found':'الحساب غير موجود',
+  'auth/wrong-password':'كلمة المرور غير صحيحة',
+  'auth/invalid-credential':'البريد أو كلمة المرور غير صحيحة',
+  'auth/email-already-in-use':'البريد الإلكتروني مستخدم مسبقاً',
+  'auth/weak-password':'كلمة المرور ضعيفة — 6 أحرف على الأقل',
+  'auth/too-many-requests':'محاولات كثيرة — حاول لاحقاً',
+  'auth/network-request-failed':'خطأ في الاتصال بالشبكة',
+};
+
+window.doLogin=async function(){
+  const email=document.getElementById('ls-email').value.trim();
+  const pass=document.getElementById('ls-pass').value;
+  const errEl=document.getElementById('ls-login-err');
+  errEl.classList.remove('show');
+  if(!email||!pass){errEl.textContent='⚠ أدخل البريد وكلمة المرور';errEl.classList.add('show');return;}
+  setLoginLoading('ls-login-btn',true);
+  try{
+    await signInWithEmailAndPassword(auth,email,pass);
+  }catch(e){
+    errEl.textContent='✗ '+(errMsgs[e.code]||e.message);
+    errEl.classList.add('show');
+    setLoginLoading('ls-login-btn',false);
+  }
+};
+
+window.doRegister=async function(){
+  const email=document.getElementById('ls-reg-email').value.trim();
+  const pass=document.getElementById('ls-reg-pass').value;
+  const pass2=document.getElementById('ls-reg-pass2').value;
+  const errEl=document.getElementById('ls-reg-err');
+  errEl.classList.remove('show');
+  if(!email||!pass){errEl.textContent='⚠ أدخل جميع الحقول';errEl.classList.add('show');return;}
+  if(pass!==pass2){errEl.textContent='✗ كلمتا المرور غير متطابقتين';errEl.classList.add('show');return;}
+  if(pass.length<6){errEl.textContent='✗ كلمة المرور قصيرة — 6 أحرف على الأقل';errEl.classList.add('show');return;}
+  setLoginLoading('ls-reg-btn',true);
+  try{
+    await createUserWithEmailAndPassword(auth,email,pass);
+  }catch(e){
+    errEl.textContent='✗ '+(errMsgs[e.code]||e.message);
+    errEl.classList.add('show');
+    setLoginLoading('ls-reg-btn',false);
+  }
+};
+
+window.doLogout=async function(){
+  if(!confirm('هل تريد تسجيل الخروج؟'))return;
+  await signOut(auth);
+};
+
+/* Enter key */
+document.getElementById('ls-pass')?.addEventListener('keydown',e=>{if(e.key==='Enter')window.doLogin();});
+document.getElementById('ls-reg-pass2')?.addEventListener('keydown',e=>{if(e.key==='Enter')window.doRegister();});
+
+/* Session ID عشوائي */
+document.getElementById('ls-session-id').textContent='SID: '+Math.random().toString(36).substr(2,8).toUpperCase();
+
+/* ═══ ACTIVATION SYSTEM ═══ */
+window.openActivation=function(){
+  document.getElementById('activation-screen').classList.add('open');
+  document.getElementById('act-code-inp').focus();
+};
+window.closeActivation=function(){
+  document.getElementById('activation-screen').classList.remove('open');
+};
+
+window.submitActivation=async function(){
+  const code=document.getElementById('act-code-inp').value.trim().toUpperCase();
+  const errEl=document.getElementById('act-err');
+  const okEl=document.getElementById('act-ok');
+  const btn=document.getElementById('act-submit-btn');
+  errEl.classList.remove('show');okEl.classList.remove('show');
+  if(!code){errEl.textContent='⚠ أدخل الكود';errEl.classList.add('show');return;}
+  if(!currentUser){errEl.textContent='✗ يجب تسجيل الدخول أولاً';errEl.classList.add('show');return;}
+  btn.disabled=true;btn.textContent='◈  جاري التحقق...';
+  try{
+    const codeDoc=await getDoc(doc(db,'activation_codes',code));
+    if(!codeDoc.exists()){
+      errEl.textContent='✗ الكود غير صحيح أو منتهي الصلاحية';
+      errEl.classList.add('show');
+      btn.disabled=false;btn.textContent='◈   تفعيل الحساب';
+      return;
+    }
+    const codeData=codeDoc.data();
+    if(codeData.used && codeData.usedBy !== currentUser.uid){
+      errEl.textContent='✗ هذا الكود تم استخدامه مسبقاً';
+      errEl.classList.add('show');
+      btn.disabled=false;btn.textContent='◈   تفعيل الحساب';
+      return;
+    }
+    await setDoc(doc(db,'users',currentUser.uid),{
+      email:currentUser.email,activated:true,
+      activatedAt:serverTimestamp(),activationCode:code
+    },{merge:true});
+    await setDoc(doc(db,'activation_codes',code),{
+      used:true,usedBy:currentUser.uid,usedAt:serverTimestamp()
+    },{merge:true});
+    isActivated=true;
+    okEl.textContent='✓ تم التفعيل بنجاح — مرحباً بك';
+    okEl.classList.add('show');
+    updateActBadge(true);
+    document.getElementById('readonly-bar').classList.remove('show');
+    setTimeout(()=>closeActivation(),1500);
+  }catch(e){
+    errEl.textContent='✗ خطأ: '+e.message;
+    errEl.classList.add('show');
+    btn.disabled=false;btn.textContent='◈   تفعيل الحساب';
+  }
+};
+
+function updateActBadge(activated){
+  const badge=document.getElementById('act-badge');
+  if(!badge)return;
+  badge.style.display='block';
+  if(activated){
+    badge.className='act-badge-on';
+    badge.textContent='✓ ACTIVATED';
+    badge.onclick=null;
+    document.getElementById('readonly-bar').classList.remove('show');
+  } else {
+    badge.className='act-badge-off';
+    badge.textContent='⚠ NOT ACTIVATED';
+    badge.onclick=()=>window.openActivation();
+    document.getElementById('readonly-bar').classList.add('show');
+  }
+}
+
+/* إغلاق شاشة التفعيل بالضغط خارجها */
+document.getElementById('activation-screen')?.addEventListener('click',function(e){
+  if(e.target===this)closeActivation();
+});
+
+/* onAuthStateChanged — المراقب الرئيسي */
+let firestoreListenersStarted=false;
+onAuthStateChanged(auth,async user=>{
+  const loading=document.getElementById('auth-loading');
+  const loginScreen=document.getElementById('login-screen');
+  const userChip=document.getElementById('user-chip');
+  const logoutBtn=document.getElementById('logout-btn');
+
+  loading.classList.add('hide');
+
+  if(user){
+    currentUser=user;
+    loginScreen.classList.add('hide');
+    setTimeout(()=>loginScreen.style.display='none',500);
+    const emailShort=user.email.split('@')[0];
+    userChip.textContent='◈ '+emailShort.toUpperCase();
+    userChip.style.display='block';
+    logoutBtn.style.display='block';
+
+    /* تحقق من حالة التفعيل */
+    try{
+      const userDoc=await getDoc(doc(db,'users',user.uid));
+      isActivated=userDoc.exists()&&userDoc.data().activated===true;
+    }catch(e){isActivated=false;}
+
+    updateActBadge(isActivated);
+
+    /* ابدأ Firestore مرة واحدة فقط */
+    if(!firestoreListenersStarted){
+      firestoreListenersStarted=true;
+      COLS.forEach(col=>{
+        onSnapshot(collection(db,col),snap=>{
+          state[col]=snap.docs.map(d=>({...d.data(),_id:d.id}))
+            .sort((a,b)=>(b._ts?.seconds||0)-(a._ts?.seconds||0));
+          renderAll();
+        },err=>console.error('Firestore:',col,err.code));
+      });
+      renderLog();renderAll();checkFirebase();
+    }
+  } else {
+    currentUser=null;
+    isActivated=false;
+    loginScreen.style.display='flex';
+    loginScreen.classList.remove('hide');
+    userChip.style.display='none';
+    logoutBtn.style.display='none';
+    const badge=document.getElementById('act-badge');
+    if(badge)badge.style.display='none';
+    document.getElementById('readonly-bar').classList.remove('show');
+  }
+});
+
 </script>
 </body>
 </html>
