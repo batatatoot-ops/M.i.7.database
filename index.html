@@ -418,7 +418,7 @@ select.inp{cursor:pointer;flex:0 0 155px;}
   border:1px solid var(--accent3);color:var(--accent3);
   padding:12px 14px;font-family:'Share Tech Mono',monospace;
   font-size:18px;letter-spacing:6px;text-align:center;
-  outline:none;transition:.2s;text-transform:uppercase;
+  outline:none;transition:.2s;
   border-radius:0;-webkit-appearance:none;
 }
 .act-inp:focus{box-shadow:0 0 18px rgba(255,195,0,.25);}
@@ -915,7 +915,7 @@ select.inp{cursor:pointer;flex:0 0 155px;}
           بدون التفعيل يمكنك العرض فقط.
         </div>
         <div class="act-inp-wrap">
-          <input class="act-inp" id="act-code-inp" placeholder="XXXXXXXX" maxlength="12" 
+          <input class="act-inp" id="act-code-inp" placeholder="أدخل كود التفعيل" maxlength="50" 
             onkeydown="if(event.key==='Enter')submitActivation()">
         </div>
         <button class="act-btn" id="act-submit-btn" onclick="submitActivation()">
@@ -942,7 +942,7 @@ select.inp{cursor:pointer;flex:0 0 155px;}
 
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import{getFirestore,collection,addDoc,deleteDoc,doc,onSnapshot,serverTimestamp,getDoc,setDoc}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import{getFirestore,collection,addDoc,deleteDoc,doc,onSnapshot,serverTimestamp,getDoc,setDoc,getDocs,query,where}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import{getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut,onAuthStateChanged}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 const app=initializeApp({apiKey:"AIzaSyAuwH-WjKylhdcShelZNFgQU41TwFX5TUI",authDomain:"mi-7-e668a.firebaseapp.com",projectId:"mi-7-e668a",storageBucket:"mi-7-e668a.firebasestorage.app",messagingSenderId:"1041043504143",appId:"1:1041043504143:web:26705fd11fd1e0bef8777a"});
@@ -1477,7 +1477,9 @@ window.closeActivation=function(){
 };
 
 window.submitActivation=async function(){
-  const code=document.getElementById('act-code-inp').value.trim().toUpperCase();
+  const rawCode=document.getElementById('act-code-inp').value.trim();
+  const codesToTry=[rawCode, rawCode.toUpperCase(), rawCode.toLowerCase()];
+  let code=rawCode;
   const errEl=document.getElementById('act-err');
   const okEl=document.getElementById('act-ok');
   const btn=document.getElementById('act-submit-btn');
@@ -1486,24 +1488,69 @@ window.submitActivation=async function(){
   if(!currentUser){errEl.textContent='✗ يجب تسجيل الدخول أولاً';errEl.classList.add('show');return;}
   btn.disabled=true;btn.textContent='◈  جاري التحقق...';
   try{
-    const codeDoc=await getDoc(doc(db,'activation_codes',code));
-    if(!codeDoc.exists()){
-      errEl.textContent='✗ الكود غير صحيح أو منتهي الصلاحية';
+    let codeDoc=null;
+    let codeId=null;
+    let readErr=null;
+    let foundIn='';
+    errEl.textContent='⟳ جاري البحث...';
+    errEl.style.color='var(--accent3)';
+    errEl.classList.add('show');
+    // جرّب كل الأسماء الممكنة للـ collection
+    const colNames=[
+      'activation_codes','activationCodes','codes','activation',
+      'Activation_codes','ActivationCodes','activation_code','code'
+    ];
+    for(const colName of colNames){
+      if(codeDoc) break;
+      try{
+        const snap=await getDocs(collection(db,colName));
+        if(snap.size>0){
+          snap.forEach(d=>{
+            if(!codeDoc && d.id.toLowerCase()===rawCode.toLowerCase()){
+              codeDoc=d;codeId=d.id;foundIn=colName;
+            }
+          });
+          if(!codeDoc){
+            // جرب field اسمه code
+            const q2=await getDocs(query(collection(db,colName),where('code','==',rawCode)));
+            if(!q2.empty){codeDoc=q2.docs[0];codeId=codeDoc.id;foundIn=colName;}
+          }
+        }
+      }catch(e){/* skip */}
+    }
+    errEl.style.color='';
+    if(!codeDoc){
+      // أظهر عدد documents في كل collection للـ debug
+      let debugInfo='';
+      for(const colName of colNames){
+        try{
+          const s=await getDocs(collection(db,colName));
+          if(s.size>0) debugInfo+=colName+'('+s.size+') ';
+        }catch(e){}
+      }
+      errEl.textContent=debugInfo
+        ?('✗ لم يجد الكود — collections موجودة: '+debugInfo)
+        :'✗ كل الـ collections فارغة — تحقق من Firestore Rules';
       errEl.classList.add('show');
       btn.disabled=false;btn.textContent='◈   تفعيل الحساب';
       return;
     }
+    code=codeId;
+    errEl.textContent='✓ وجد في: '+foundIn+' / '+codeId;
+    code=codeId;
     const codeData=codeDoc.data();
-    if(codeData.used && codeData.usedBy !== currentUser.uid){
-      errEl.textContent='✗ هذا الكود تم استخدامه مسبقاً';
+    if(codeData.used && codeData.usedBy && codeData.usedBy !== currentUser.uid){
+      errEl.textContent='✗ هذا الكود مستخدم من حساب آخر';
       errEl.classList.add('show');
       btn.disabled=false;btn.textContent='◈   تفعيل الحساب';
       return;
     }
+    try{
     await setDoc(doc(db,'users',currentUser.uid),{
       email:currentUser.email,activated:true,
       activatedAt:serverTimestamp(),activationCode:code
     },{merge:true});
+    }catch(we){console.error('users write:',we.code,we.message);errEl.textContent='✗ '+we.code+': تحقق من Firestore Rules';errEl.classList.add('show');btn.disabled=false;btn.textContent='◈   تفعيل الحساب';return;}
     await setDoc(doc(db,'activation_codes',code),{
       used:true,usedBy:currentUser.uid,usedAt:serverTimestamp()
     },{merge:true});
